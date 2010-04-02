@@ -1,0 +1,85 @@
+Testsuite: PlayerControllerTests
+Tests run: 3, Failures: 0, Errors: 3, Time elapsed: 2.122 sec
+------------- Standard Output ---------------
+--Output from testHandleLogin--
+--Output from testHandleLoginInvalidPlayer--
+--Output from testLogout--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testHandleLogin--
+--Output from testHandleLoginInvalidPlayer--
+--Output from testLogout--
+------------- ---------------- ---------------
+
+Testcase: testHandleLogin took 1.94 sec
+	Caused an ERROR
+Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure10.doCall(PlayerController.groovy:109)
+	at PlayerController$_closure10.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testHandleLogin(PlayerControllerTests.groovy:30)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+
+Testcase: testHandleLoginInvalidPlayer took 0.027 sec
+	Caused an ERROR
+Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure10.doCall(PlayerController.groovy:109)
+	at PlayerController$_closure10.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testHandleLoginInvalidPlayer(PlayerControllerTests.groovy:51)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+
+Testcase: testLogout took 0.025 sec
+	Caused an ERROR
+Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure11.doCall(PlayerController.groovy:117)
+	at PlayerController$_closure11.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testLogout(PlayerControllerTests.groovy:68)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+

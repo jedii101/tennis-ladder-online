@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="3" failures="0" hostname="hpmb" name="PlayerControllerTests" tests="3" time="2.122" timestamp="2010-03-29T03:31:35">
+  <properties />
+  <testcase classname="PlayerControllerTests" name="testHandleLogin" time="1.941">
+    <error message="Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!" type="org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException">org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure10.doCall(PlayerController.groovy:109)
+	at PlayerController$_closure10.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testHandleLogin(PlayerControllerTests.groovy:30)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+</error>
+  </testcase>
+  <testcase classname="PlayerControllerTests" name="testHandleLoginInvalidPlayer" time="0.027">
+    <error message="Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!" type="org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException">org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure10.doCall(PlayerController.groovy:109)
+	at PlayerController$_closure10.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testHandleLoginInvalidPlayer(PlayerControllerTests.groovy:51)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+</error>
+  </testcase>
+  <testcase classname="PlayerControllerTests" name="testLogout" time="0.026">
+    <error message="Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!" type="org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException">org.codehaus.groovy.grails.web.mapping.exceptions.UrlMappingException: Unable to create URL for mapping [/(*)/(*)?/(*)?] and parameters [{action=login}]. Parameter [controller] is required, but was not specified!
+	at PlayerController$_closure11.doCall(PlayerController.groovy:117)
+	at PlayerController$_closure11.doCall(PlayerController.groovy)
+	at PlayerControllerTests.testLogout(PlayerControllerTests.groovy:68)
+	at _GrailsTest_groovy$_run_closure4.doCall(_GrailsTest_groovy:202)
+	at _GrailsTest_groovy$_run_closure2.doCall(_GrailsTest_groovy:146)
+	at _GrailsTest_groovy$_run_closure1_closure19.doCall(_GrailsTest_groovy:112)
+	at _GrailsTest_groovy$_run_closure1.doCall(_GrailsTest_groovy:95)
+	at TestApp$_run_closure1.doCall(TestApp.groovy:66)
+	at gant.Gant$_dispatch_closure4.doCall(Gant.groovy:324)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy:334)
+	at gant.Gant$_dispatch_closure6.doCall(Gant.groovy)
+	at gant.Gant.withBuildListeners(Gant.groovy:344)
+	at gant.Gant.this$2$withBuildListeners(Gant.groovy)
+	at gant.Gant$this$2$withBuildListeners.callCurrent(Unknown Source)
+	at gant.Gant.dispatch(Gant.groovy:334)
+	at gant.Gant.this$2$dispatch(Gant.groovy)
+	at gant.Gant.invokeMethod(Gant.groovy)
+	at gant.Gant.processTargets(Gant.groovy:495)
+	at gant.Gant.processTargets(Gant.groovy:480)
+</error>
+  </testcase>
+  <system-out><![CDATA[--Output from testHandleLogin--
+--Output from testHandleLoginInvalidPlayer--
+--Output from testLogout--
+]]></system-out>
+  <system-err><![CDATA[--Output from testHandleLogin--
+--Output from testHandleLoginInvalidPlayer--
+--Output from testLogout--
+]]></system-err>
+</testsuite>
