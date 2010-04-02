@@ -1,0 +1,112 @@
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="layout" content="main" />
+    <title>Ladder List</title>
+  </head>
+  <body>
+    <div class="nav">
+      <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
+      <span class="menuButton"><g:link class="create" action="create">New Level</g:link></span>
+    </div>
+    <div class="body">
+      <h1>Ladder standing: </h1>
+      <g:if test="${flash.message}">
+        <div class="message">${flash.message}</div>
+      </g:if>
+<div class="list">
+<th>***NOTE***  Teams/players in <b class="CHALLENGER">Red(+)</b> are challengers;Teams/players in <b class="DEFENDER">Green(-)</b> are defenders,
+<p><b class="BOTH">Blue(?)</b> are special defenders can challenge above if no challenge recieved<p>
+<p><b>Challengers pls feel free to challenge defenders one level above you.<b><p>&nbsp;</th>
+</div>
+      <div class="list">
+        <table>
+          <thead>
+            <tr>
+
+
+
+              <th>Single Ladder position ${new Date()}</th>
+
+
+
+
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <g:each in="${flash.singleLevels}" status="i" var="levelInstance">
+              <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+
+
+                <td><!--${fieldValue(bean:levelInstance, field:'levelTeam')}-->
+                  <g:each in="${levelInstance.levelposition}" status="j" var="posInstance">
+                    <span class="${posInstance.team.status}">
+${fieldValue(bean:posInstance, field:'team')}(${posInstance.team.shortStatus})
+                    </span>
+                  </g:each>
+
+                </td>
+
+
+
+
+
+              </tr>
+            </g:each>
+          </tbody>
+        </table>
+      </div>
+      <div class="paginateButtons">
+        <g:paginate total="${flash.singleLevels.size}" />
+      </div>
+
+<div class="list">
+        <table>
+          <thead>
+            <tr>
+
+
+
+              <th>Mix Doubles Ladder position ${new Date()}</th>
+
+
+
+
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <g:each in="${flash.doubleLevels}" status="i" var="levelInstance">
+              <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+
+
+                <td><!--${fieldValue(bean:levelInstance, field:'levelTeam')}-->
+                  <g:each in="${levelInstance.levelposition}" status="j" var="posInstance">
+                    <span class="${posInstance.team.status}">
+${fieldValue(bean:posInstance, field:'team')}(${posInstance.team.shortStatus})
+                    </span>
+                  </g:each>
+
+                </td>
+
+
+
+
+
+              </tr>
+            </g:each>
+          </tbody>
+        </table>
+      </div>
+      <div class="paginateButtons">
+        <g:paginate total="${flash.singleLevels.size}" />
+      </div>
+
+    </div>
+  </body>
+</html>

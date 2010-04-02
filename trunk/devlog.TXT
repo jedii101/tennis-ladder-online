@@ -1,0 +1,76 @@
+-- Main goal:{
+-- grails showcase; architecting tradeoff, rules capturing & flexibilities. spring+hibernate., groovy.
+--move the ladder app online:{
+  ^security{
+  user registry: Deadline: April 17.
+  Access control: admin vs. general
+  }
+  
+  ^hosting:{
+  use rogers ip             :http://whatismyipaddress.com/:173.32.179.138
+  forward to my laptop at the beginning.
+  }
+  
+  ^backup plan:{
+  ^db must be compatible with version 1, anything wrong go back to v1?
+   ^maintain v2 able to run locally
+    }
+    
+    ^ main feature:{
+        A:{ ^security(
+            ^match report    +who editted
+            ^ladder chart
+            }
+        B:{
+          ^match report{email}
+          ^admin drag & drop{ajax}
+          ^
+        }
+            
+    
+    }
+
+}
+
+
+
+}
+
+-- security solution:{
+^custom: code, authorization code. flexible.
+^JSecurity: create a predefined domain classses,AuthController;restrict role at: controller,action,permission?
+^CAS:central Authentication Server, one step signon, cross platform(java, .net,Ruby),filter by url?
+?Acegi=spring security:plugable:(LDAP,CAS,JAAS,CAPTCHA),domain classes,tag lib{
+SecurityConfig.groovy
+
+}
+
+-- MAR 28: Kick off the project.
+After spending a few days trying Google App Engine, concluded that the App Engine is still not mature enough to perform.
+Decided to keep the old platform(grails 1.1,netbeans, hsql) to kick of dev.
+
+-- phase 1:must finish before April 17.
+
+# 001:{
+backup svn, branch(soure code & db) from v1, modify db config.
+}
+
+# 002: security implementation: add user/password
+--GUI, domain, controller validation, role implementation, gui role framework., filtering/validation.
+
+# 003: user login page-> forward to ladder + match report
+
+# 004: user main page
+
+# 005: ladder match report
+
+# 006: admin page
+
+# 007: add unit test for regression test
+
+# 008: migrate from hsqldb to mysql
+
+# 009: deploy app.
+
+# 010: user report
+
