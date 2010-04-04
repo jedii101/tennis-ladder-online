@@ -4,7 +4,10 @@ security {
 
 	active = true
 
-	loginUserDomainClass = "Person"
+	loginUserDomainClass = "Player"
+	userName="userName"
+	password="password"
 	authorityDomainClass = "Authority"
 	requestMapClass = "Requestmap"
+        useMail="true"
 }

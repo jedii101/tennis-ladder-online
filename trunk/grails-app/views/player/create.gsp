@@ -12,7 +12,7 @@
             <span class="menuButton"><g:link class="list" action="list">Player List</g:link></span>
         </div>
         <div class="body">
-            <h1>Register</h1>
+            <h1>Create Player:${fieldValue(bean:playerInstance,field:'name')}<br> </h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -44,16 +44,14 @@
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
+                                                      <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="userName">User Name:</label>
+                                    <label for="lastName">User ID:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'userName','errors')}">
-                                    <input type="text" id="userName" name="userName" value="${fieldValue(bean:playerInstance,field:'userName')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'lastName','errors')}">
+                                    ${fieldValue(bean:playerInstance,field:'userName')}
                                 </td>
-                            </tr> 
-                        
-
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -72,7 +70,18 @@
                                     <input type="text" id="phone" name="phone" value="${fieldValue(bean:playerInstance,field:'phone')}"/>
                                 </td>
                             </tr> 
-
+                        
+                           
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">Description:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'description','errors')}">
+                                    <input type="text" id="description" name="description" value="${fieldValue(bean:playerInstance,field:'description')}"/>
+                                </td>
+                            </tr> 
+                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="password">Password:</label>
@@ -80,24 +89,16 @@
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'password','errors')}">
                                     <input type="text" id="password" name="password" value="${fieldValue(bean:playerInstance,field:'password')}"/>
                                 </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="confirmPassword">Confirm Password:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'confirmPassword','errors')}">
-                                    <input type="text" name="confirmPassword" id="confirmPassword" value="${fieldValue(bean:playerInstance,field:'confirmPassword')}" />
-                                </td>
                             </tr> 
-
-
-
+                        
+                            
+                        
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="name">Name:${fieldValue(bean:playerInstance,field:'name')}</label>
+                                    <label for="pass">Password confirm:</label>
                                 </td>
-                                <td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'pass','errors')}">
+                                    <input type="text" name="pass" id="pass" value="${fieldValue(bean:playerInstance,field:'pass')}" />
                                 </td>
                             </tr> 
                         

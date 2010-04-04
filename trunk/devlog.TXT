@@ -74,3 +74,40 @@ backup svn, branch(soure code & db) from v1, modify db config.
 
 # 010: user report
 
+
+
+    * LevelPositionController
+    * LevelController
+    * TeamController
+
+    * RequestmapController
+    * LoginController
+    * LadderController
+    * LogoutController
+    * PlayerController
+    * DefaultReasonController
+    * RegisterController
+    * AuthorityController
+    * MatchScheduleController
+
+    -- interesting techs{
+    	^gsp template
+	^layout with siteMesh(like tiles)
+	^<g:grep filter
+	^logical tags:{
+		def isAdmin = { attrs, body ->
+     def user = attrs['user']
+     if(user != null && checkUserPrivs(user)) {
+           out << body()
+     }
+     ******gsp ********
+     <g:isAdmin user="${myUser}">
+    // some restricted content
+</g:isAdmin>
+	^webflow: springWebFlow
+	^ajax
+}
+	}
+    }
+
+
