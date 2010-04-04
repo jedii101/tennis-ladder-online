@@ -58,15 +58,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="password">Password:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'password','errors')}">
-                                    <input type="text" id="password" name="password" value="${fieldValue(bean:playerInstance,field:'password')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="email">Email:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'email','errors')}">
@@ -85,10 +76,50 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="confirmPassword">Confirm Password:</label>
+                                    <label for="enabled">Enabled:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'confirmPassword','errors')}">
-                                    <input type="text" name="confirmPassword" id="confirmPassword" value="${fieldValue(bean:playerInstance,field:'confirmPassword')}" />
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'enabled','errors')}">
+                                    <g:checkBox name="enabled" value="${playerInstance?.enabled}" ></g:checkBox>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="emailShow">Email Show:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'emailShow','errors')}">
+                                    <g:checkBox name="emailShow" value="${playerInstance?.emailShow}" ></g:checkBox>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">Description:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'description','errors')}">
+                                    <input type="text" id="description" name="description" value="${fieldValue(bean:playerInstance,field:'description')}"/>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="password">Password:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'password','errors')}">
+                                    <input type="text" id="password" name="password" value="${fieldValue(bean:playerInstance,field:'password')}"/>
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="authorities">Authorities:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'authorities','errors')}">
+                                    <g:select name="authorities"
+from="${Authority.list()}"
+size="5" multiple="yes" optionKey="id"
+value="${playerInstance?.authorities}" />
+
                                 </td>
                             </tr> 
                         
@@ -98,6 +129,15 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'name','errors')}">
                                     <input type="text" name="name" id="name" value="${fieldValue(bean:playerInstance,field:'name')}" />
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="pass">Pass:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'pass','errors')}">
+                                    <input type="text" name="pass" id="pass" value="${fieldValue(bean:playerInstance,field:'pass')}" />
                                 </td>
                             </tr> 
                         

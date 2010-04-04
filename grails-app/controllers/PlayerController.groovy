@@ -83,11 +83,18 @@ class PlayerController {
     def create = {
         def playerInstance = new Player()
         playerInstance.properties = params
+
         return ['playerInstance':playerInstance]
+        
     }
 
     def save = {
         def playerInstance = new Player(params)
+//        if(!playerInstance.password?.equals(playerInstance?.pass)){
+//            flash.message = "password must match confirmed password"
+//            render(view:'create',model:[playerInstance:playerInstance])
+//        }
+//        else
         if(!playerInstance.hasErrors() && playerInstance.save()) {
             flash.message = "Player ${playerInstance.id} created"
             redirect(action:show,id:playerInstance.id)
@@ -118,4 +125,3 @@ class PlayerController {
         }
     }
 }
-

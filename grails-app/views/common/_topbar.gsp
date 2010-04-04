@@ -8,7 +8,7 @@
       <g:link controller="player" action="login">
         <g:message code="topbar.login" /></g:link>
       <br>
-      <g:link controller="player" action="signup">
+      <g:link controller="player" action="create">
         <g:message code="topbar.signup" /></g:link>
     </g:else>
 

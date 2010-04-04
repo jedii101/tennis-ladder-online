@@ -51,13 +51,6 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Password:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'password')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name">Email:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'email')}</td>
@@ -72,9 +65,43 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Confirm Password:</td>
+                            <td valign="top" class="name">Enabled:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'confirmPassword')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'enabled')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Email Show:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'emailShow')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Description:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'description')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Password:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'password')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Authorities:</td>
+                            
+                            <td  valign="top" style="text-align:left;" class="value">
+                                <ul>
+                                <g:each var="a" in="${playerInstance.authorities}">
+                                    <li><g:link controller="authority" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+                                </g:each>
+                                </ul>
+                            </td>
                             
                         </tr>
                     
@@ -82,6 +109,13 @@
                             <td valign="top" class="name">Name:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'name')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Pass:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'pass')}</td>
                             
                         </tr>
                     

@@ -29,9 +29,9 @@
                         
                    	        <g:sortableColumn property="userName" title="User Name" />
                         
-                   	        <g:sortableColumn property="password" title="Password" />
-                        
                    	        <g:sortableColumn property="email" title="Email" />
+                        
+                   	        <g:sortableColumn property="phone" title="Phone" />
                         
                         </tr>
                     </thead>
@@ -47,9 +47,9 @@
                         
                             <td>${fieldValue(bean:playerInstance, field:'userName')}</td>
                         
-                            <td>${fieldValue(bean:playerInstance, field:'password')}</td>
-                        
                             <td>${fieldValue(bean:playerInstance, field:'email')}</td>
+                        
+                            <td>${fieldValue(bean:playerInstance, field:'phone')}</td>
                         
                         </tr>
                     </g:each>
