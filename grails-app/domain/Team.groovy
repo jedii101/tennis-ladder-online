@@ -15,7 +15,7 @@ class Team  implements Comparable {
     }
 
     public String toName(){
-	return player1.getName()+(null==player2?"":"&"+player2.getName())
+	return player1.getName()+(null==player2?"":"\n&"+player2.getName())
     }
     
    

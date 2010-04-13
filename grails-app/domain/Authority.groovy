@@ -7,7 +7,7 @@
  */
 class Authority {
 
-	static hasMany = [people: Person]
+	static hasMany = [people: Player]
 
 	/** description */
 	String description

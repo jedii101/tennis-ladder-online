@@ -32,6 +32,7 @@
                    	        <g:sortableColumn property="email" title="Email" />
                         
                    	        <g:sortableColumn property="phone" title="Phone" />
+							<g:sortableColumn property="enabled" title="Enabled" />
                         
                         </tr>
                     </thead>
