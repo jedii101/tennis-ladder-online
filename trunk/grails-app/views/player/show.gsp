@@ -85,20 +85,15 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Password:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'password')}</td>
-                            
-                        </tr>
+
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Authorities:</td>
+                            <td valign="top" class="name">Roles:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="a" in="${playerInstance.authorities}">
-                                    <li><g:link controller="authority" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+                                    <li>${playerInstance?.authorities?.authority}</li>
                                 </g:each>
                                 </ul>
                             </td>
@@ -112,12 +107,7 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Pass:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:playerInstance, field:'pass')}</td>
-                            
-                        </tr>
+
                     
                     </tbody>
                 </table>

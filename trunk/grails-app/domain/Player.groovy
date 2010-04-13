@@ -1,6 +1,7 @@
-
+import org.grails.plugins.springsecurity.service.AuthenticateService
 
 class Player {
+    static AuthenticateService authenticateService=new AuthenticateService();
     	
     static hasMany = [authorities: Authority]
     static belongsTo = Authority
@@ -19,16 +20,17 @@ class Player {
     String description = ''
 
     /** plain password to create a MD5 password */
-    String pass = '[secret]'
+    String pass = ''
 
     static transients = [ 'name','pass' ]
     //	static hasMany = [levels:Level]
     static constraints = {
+        //NOTE: validation: http://grails.org/doc/latest/ 7.4
         firstName blank:false
         lastName blank:false
         userName(blank:false,unique:true)
                 
-        email blank:true, matches:/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*([,;]\s*\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)*/
+        email blank:true, email:true
         phone matches:/\d{10}/
                 
         enabled()
@@ -36,7 +38,20 @@ class Player {
         description blank:true
         password(blank:false, validator: {//@@NOTE:validator can not rename
                 val, obj ->
-                obj.properties['pass'] == val
+                //issue#16 @TODO: complete the confirm password validation, why 'Cannot invoke method encodePassword() on null object'?
+                //                 println("@@password:"+obj?.properties['password'])
+                //                 println("@@pass:"+obj?.properties['pass'])
+                //                 println("@@authenticateService"+authenticateService)
+                //
+                //                if((null!=obj.properties['pass'])&&(val!=authenticateService.encodePassword("abc"))){
+                //                     println("@@start:")
+                //                    //println("@@encoded:"+(obj.properties['pass']!=null)?authenticateService.encodePassword(obj.properties['pass']):"null")
+                //                    obj.properties['pass']=null
+                //                    obj.properties['password']=null
+                //                    return ['password.notMatch']
+                //                }
+                //                println("@@passvalidation:")
+        
             }
         )
     }

@@ -42,16 +42,17 @@ class LoginController {
 	 * Show the login page.
 	 */
 	def auth = {
-
+println("authentication")
 		nocache response
 
 		if (isLoggedIn()) {
-			redirect uri: '/'
+			redirect uri: '/level/list'
 			return
 		}
 
 		String view
 		String postUrl
+                //@@NOTE: this links to security config!
 		def config = authenticateService.securityConfig.security
 		if (config.useOpenId) {
 			view = 'openIdAuth'
@@ -62,8 +63,10 @@ class LoginController {
 			postUrl = "${request.contextPath}${config.facebook.filterProcessesUrl}"
 		}
 		else {
+
 			view = 'auth'
 			postUrl = "${request.contextPath}${config.filterProcessesUrl}"
+                        println("render auth:"+postUrl)
 		}
 
 		render view: view, model: [postUrl: postUrl]
