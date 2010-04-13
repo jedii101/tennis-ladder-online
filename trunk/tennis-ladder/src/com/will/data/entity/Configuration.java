@@ -8,7 +8,15 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Configuration {
-    public static final String PROPERTY_REDIRECT_URL = "PROPERTY_REDIRECT_URL";
+    public enum PROPERTIES{
+	URL_REDIRECT,
+	EMAIL_SENDFROM,
+	EMAIL_STANDARD_SUBJECT,
+	EMAIL_RESIPTANT,
+	EMAIL_STANDARD_FOOTER;
+
+    }
+//    public static final String PROPERTY_REDIRECT_URL = "PROPERTY_REDIRECT_URL";
     @PrimaryKey
     @Persistent
     private String property;
@@ -26,8 +34,12 @@ public class Configuration {
         return property;
     }
 
+    public void setProperty(PROPERTIES property) {
+        this.property = property.toString();
+    }
+
     public void setProperty(String property) {
-        this.property = property;
+        this.property = property.toString();
     }
 
     public String getValue() {

@@ -2,16 +2,17 @@ package com.will;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.will.data.DataStoreService;
 import com.will.data.entity.Configuration;
-
-import java.util.logging.Logger;
+import com.will.mail.MailTemplate;
+import com.will.service.DataStoreService;
+import com.will.service.MailerService;
 
 
 /**
@@ -20,7 +21,8 @@ import java.util.logging.Logger;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 private static final Logger log = Logger.getLogger(AdminServlet.class.getName());
-	 private static DataStoreService service=new DataStoreService();
+	 private static DataStoreService dataService=new DataStoreService();
+	 private static MailerService mailService=new MailerService();
 
 
     /**
@@ -62,12 +64,14 @@ public class AdminServlet extends HttpServlet {
 		log.warning("invalid url:"+url);
 	    }
 	    Configuration c=new Configuration();
-	    c.setProperty(Configuration.PROPERTY_REDIRECT_URL);
+	    c.setProperty(Configuration.PROPERTIES.URL_REDIRECT);
 	    c.setValue(url);
 	    c.setUpdateBy(user+"@"+request.getRemoteAddr());
 
 //	     service=new DataStoreService();
-	    service.saveConfig(c);
+	    dataService.saveConfig(c);
+
+	    mailService.sendMail(new MailTemplate());
 
 //	    getServletContext().setAttribute("redirectURL", url);
 //	    Constants.REDIRECT_URL=url;
@@ -79,7 +83,7 @@ public class AdminServlet extends HttpServlet {
 
 	public static String getRedirectURL(){
 
-	    return service.getRedirectURL();
+	    return dataService.getRedirectURL();
 	}
 
 }
