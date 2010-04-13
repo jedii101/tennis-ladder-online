@@ -7,6 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.will.data.DataStoreService;
+import com.will.data.entity.Configuration;
+
 import java.util.logging.Logger;
 
 
@@ -16,15 +20,16 @@ import java.util.logging.Logger;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 private static final Logger log = Logger.getLogger(AdminServlet.class.getName());
-
+	 private static DataStoreService service=new DataStoreService();
 
 
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AdminServlet() {
+
         super();
-        // TODO Auto-generated constructor stub
+        log.info("Application started");
     }
 
 	/**
@@ -42,7 +47,7 @@ public class AdminServlet extends HttpServlet {
 	}
 
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    System.out.println("hit!");
+	    log.info("hit!");
 	    String user=request.getParameter("admin");
 	    String passwd=request.getParameter("password");
 	    String url=request.getParameter("redirectURL");
@@ -56,11 +61,25 @@ public class AdminServlet extends HttpServlet {
 	    if(null==url||!url.startsWith("http://")){
 		log.warning("invalid url:"+url);
 	    }
-	    getServletContext().setAttribute("redirectURL", url);
-	    log.info("url:"+url);
+	    Configuration c=new Configuration();
+	    c.setProperty(Configuration.PROPERTY_REDIRECT_URL);
+	    c.setValue(url);
+	    c.setUpdateBy(user+"@"+request.getRemoteAddr());
+
+//	     service=new DataStoreService();
+	    service.saveConfig(c);
+
+//	    getServletContext().setAttribute("redirectURL", url);
+//	    Constants.REDIRECT_URL=url;
+	    System.out.println("new config:"+c);
 	    PrintWriter out = response.getWriter();
 	    out.println("new redirect url:"+url);
 
+	}
+
+	public static String getRedirectURL(){
+
+	    return service.getRedirectURL();
 	}
 
 }
