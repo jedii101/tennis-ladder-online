@@ -65,6 +65,6 @@ class Player {
     }
 
     public  String getUserName(){
-        return firstName?.toLowerCase()+"_"+lastName?.toLowerCase()
+        return (null==firstName&&null==lastName)?"":firstName.toLowerCase()+"_"+lastName?.toLowerCase()
     }
 }

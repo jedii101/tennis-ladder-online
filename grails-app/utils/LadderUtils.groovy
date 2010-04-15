@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils
  */
 class LadderUtils {
     static String formatName(String name){
-        return name?.toLowerCase()?.capitalize();
+        return (null==name)?"":name.toLowerCase().capitalize();
     }
 	
 }
