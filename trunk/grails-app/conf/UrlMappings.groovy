@@ -5,12 +5,12 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        //      "/"(view:"/index")
-        //	  "500"(view:'/error')
-        //	}
-"/"{
-            controller="level"
-            action="list"
-        }
+              "/"(view:"/user_main")
+        	  "500"(view:'/error')
+        	
+//"/"{
+  //          controller="level"
+   //         action="list"
+       // }
     }
 }

@@ -134,10 +134,17 @@ class PlayerController {
             return
         }
 
+        //default user role to user:
+        //if(playerInstance.r)
+
 
         playerInstance.password = authenticateService.encodePassword(params.password)
         if (playerInstance.save()) {
             addRoles(playerInstance)
+            //save message
+            def message=new Message(createBy:playerInstance,message:"created",created:new Date())
+            message.save()
+            println("message saved:"+message.format())
             redirect action: show, id: playerInstance.id
         }
         else {

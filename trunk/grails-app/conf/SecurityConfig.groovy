@@ -13,7 +13,7 @@ security {
 
         loginForUrl="/login/auth"
         afterLogoutUrl="/login/auth"
-        defaultTargetUrl="/level/list"
+        defaultTargetUrl="/user_main.gsp"
 
     //url role mapping
     useRequestMapDomainClass = true

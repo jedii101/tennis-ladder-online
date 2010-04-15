@@ -27,15 +27,7 @@
                   <table>
                     <thead>
                       <tr>
-
-
-
                         <th>Single Ladder  </th>
-
-
-
-
-
 
                       </tr>
                     </thead>

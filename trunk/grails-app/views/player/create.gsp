@@ -8,8 +8,10 @@
     </head>
     <body>
         <div class="nav">
+
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Player List</g:link></span>
+          
         </div>
         <div class="body">
             <h1>Create Player:${fieldValue(bean:playerInstance,field:'name')}<br> </h1>
@@ -101,13 +103,14 @@
                                     <input size="20" maxlength="20"  type="text" name="pass" id="pass" value="${fieldValue(bean:playerInstance,field:'pass')}" />
                                 </td>
                             </tr> 
-                        
+                        <g:ifAnyGranted role="ROLE_ADMIN">
 					<g:each in="${authorityList}">
 					<tr>
 						<td valign="top" class="name" align="left">${it.authority.encodeAsHTML()}</td>
 						<td align="left"><g:checkBox name="${it.authority}"/></td>
 					</tr>
 					</g:each>
+                        </g:ifAnyGranted>
                         </tbody>
                     </table>
                 </div>
