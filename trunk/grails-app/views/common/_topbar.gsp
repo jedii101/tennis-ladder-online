@@ -6,6 +6,7 @@
     </g:if>
     <g:else>
       <g:isLoggedIn>
+        <g:loggedInUserInfo field="userName"/>
          <g:link controller="logout" action="index">
         <g:message code="topbar.logout" /></g:link>
       <br>

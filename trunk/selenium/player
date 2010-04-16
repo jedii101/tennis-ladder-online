@@ -17,108 +17,33 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>link=PlayerController</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=1</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>_action_Edit</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Home</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=PlayerController</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=New Player</td>
+	<td>click</td>
+	<td>//div[@id='content']/div[1]/ul/a[1]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>firstName</td>
+	<td>j_username</td>
+	<td>lily_gates</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_password</td>
 	<td>abc</td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>lastName</td>
-	<td>abc</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>email</td>
-	<td>abc@abc.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>phone</td>
-	<td>4163321111</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>description</td>
-	<td>desc</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>hello</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>pass</td>
-	<td>hell1</td>
-</tr>
-<tr>
 	<td>click</td>
-	<td>ROLE_USER</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@value='Create']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>hello</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>pass</td>
-	<td>hello</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>ROLE_USER</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@value='Create']</td>
+	<td>//input[@value='Login']</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>_action_Delete</td>
+	<td>link=Message</td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertConfirmation</td>
-	<td>Are you sure?</td>
+	<td>click</td>
+	<td>link=Log out</td>
 	<td></td>
 </tr>
 

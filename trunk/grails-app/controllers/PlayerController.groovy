@@ -142,7 +142,7 @@ class PlayerController {
         if (playerInstance.save()) {
             addRoles(playerInstance)
             //save message
-            def message=new Message(createBy:playerInstance,message:"created",created:new Date())
+            def message=new Message(createBy:playerInstance,message:"Account Created",created:new Date())
             message.save()
             println("message saved:"+message.format())
             redirect action: show, id: playerInstance.id
