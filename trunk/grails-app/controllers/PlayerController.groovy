@@ -156,11 +156,18 @@ class PlayerController {
     }
 
     private void addRoles(playerInstance) {
+	    boolean found=false
         for (String key in params.keySet()) {
             if (key.contains('ROLE') && 'on' == params.get(key)) {
                 Authority.findByAuthority(key).addToPeople(playerInstance)
+		found=true;
             }
         }
+	if(!found){
+		//use default role: ROLE_USER
+		println("use default ROLE: ROLE_USER")
+			Authority.findByAuthority("ROLE_USER").addToPeople(playerInstance)
+	}
     }
 
     private Map buildPersonModel(playerInstance) {
