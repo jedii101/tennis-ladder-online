@@ -1,0 +1,22 @@
+#Tennis Ladder Online for STLC
+
+= Introduction =
+
+The biggest advantage for moving it online is TO LET USER *report result online* instead of sending emails, once user reported result, everyone will be able to see the standing change right away as well as the result report, so no need to wait for 'weekly' result anymore, in another words, the ladder will be 'realtime' once it's been moved online.
+
+
+= Details =
+
+A 'realtime' ladder will also show who's taken challenge, who's available for challenge at realtime, so that the ladder could 'manage' by itself.
+
+I break down the functions into 3 phases:
+
+release 1: player registration , basic messaging. (on April 16)
+release 2: realtime ladder, match result list, challenger issue challenge, defender accept challenge and winner report result (aim for MAY 10)
+release 3: enhancement: email notifying, and on going enhancement (TBD)
+
+To the end users they can benefit from all these above and no more efforts will be made than before. I also have backup plans if the online plan fails, we can just keep the way it was running last year.
+
+Thanks,
+
+Will
