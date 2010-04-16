@@ -34,7 +34,7 @@
                                     <label for="firstName">First Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'firstName','errors')}">
-                                    <input type="text" id="firstName" name="firstName" value="${fieldValue(bean:playerInstance,field:'firstName')}"/>
+                                    <input size="20" maxlength="20" type="text" id="firstName" name="firstName" value="${fieldValue(bean:playerInstance,field:'firstName')}"/>
                                 </td>
                             </tr> 
                         
@@ -43,16 +43,17 @@
                                     <label for="lastName">Last Name:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'lastName','errors')}">
-                                    <input type="text" id="lastName" name="lastName" value="${fieldValue(bean:playerInstance,field:'lastName')}"/>
+                                    <input size="20" maxlength="20"  type="text" id="lastName" name="lastName" value="${fieldValue(bean:playerInstance,field:'lastName')}"/>
                                 </td>
                             </tr> 
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="userName">User Name:</label>
+                                    <label for="lastName">User ID:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'userName','errors')}">
-                                    <input type="text" id="userName" name="userName" value="${fieldValue(bean:playerInstance,field:'userName')}"/>
+                                    <input type="hidden" id="userName" name="userName" value="${fieldValue(bean:playerInstance,field:'userName')}"/>
+									${fieldValue(bean:playerInstance,field:'userName')}
                                 </td>
                             </tr> 
                         
@@ -61,7 +62,7 @@
                                     <label for="email">Email:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'email','errors')}">
-                                    <input type="text" id="email" name="email" value="${fieldValue(bean:playerInstance,field:'email')}"/>
+                                    <input size="50" maxlength="50" type="text" id="email" name="email" value="${fieldValue(bean:playerInstance,field:'email')}"/>
                                 </td>
                             </tr> 
                         
@@ -70,7 +71,7 @@
                                     <label for="phone">Phone:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'phone','errors')}">
-                                    <input type="text" id="phone" name="phone" value="${fieldValue(bean:playerInstance,field:'phone')}"/>
+                                  <input type="text" id="phone" name="phone" size="10" maxlength="10" value="${fieldValue(bean:playerInstance,field:'phone')}"/>
                                 </td>
                             </tr> 
                         
@@ -97,7 +98,7 @@
                                     <label for="description">Description:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'description','errors')}">
-                                    <input type="text" id="description" name="description" value="${fieldValue(bean:playerInstance,field:'description')}"/>
+                                    <input size="50" maxlength="50"  type="text" id="description" name="description" value="${fieldValue(bean:playerInstance,field:'description')}"/>
                                 </td>
                             </tr> 
                         
@@ -106,7 +107,7 @@
                                     <label for="password">Password:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:playerInstance,field:'password','errors')}">
-                                    <input type="text" id="password" name="password" value="${fieldValue(bean:playerInstance,field:'password')}"/>
+                                    <input size="20" maxlength="20"  type="text" id="password" name="password" value="${fieldValue(bean:playerInstance,field:'password')}"/>
                                 </td>
                             </tr> 
                         
