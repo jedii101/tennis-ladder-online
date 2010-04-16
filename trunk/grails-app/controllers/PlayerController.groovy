@@ -142,8 +142,9 @@ class PlayerController {
         if (playerInstance.save()) {
             addRoles(playerInstance)
             //save message
-            def message=new Message(createBy:playerInstance,message:"Account Created",created:new Date())
+            def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date())
             message.save()
+            flash.message=message.format()
             println("message saved:"+message.format())
             redirect action: show, id: playerInstance.id
         }
