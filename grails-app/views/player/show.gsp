@@ -116,7 +116,9 @@
                 <g:form>
                     <input type="hidden" name="id" value="${playerInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
+                    <g:ifAnyGranted role="ROLE_ADMIN">
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    </g:ifAnyGranted>
                 </g:form>
             </div>
         </div>
