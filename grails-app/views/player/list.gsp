@@ -41,9 +41,9 @@
                     <tbody>
                     <g:each in="${playerInstanceList}" status="i" var="playerInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
+                        <g:ifAnyGranted role="ROLE_ADMIN">
                             <td><g:link action="show" id="${playerInstance.id}">${fieldValue(bean:playerInstance, field:'id')}</g:link></td>
-                        
+                        </g:ifAnyGranted>
                             <td>${fieldValue(bean:playerInstance, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:playerInstance, field:'lastName')}</td>
