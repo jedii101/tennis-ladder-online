@@ -8,12 +8,18 @@
   <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-  <g:ifAnyGranted role="ROLE_ADMIN">
+
   <div class="nav">
-    <span class="menuButton"><a class="home" href="${createLink(uri: '/secure/index.gsp')}">Home</a></span>
-    <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-  </div>
+
+
+    <span class="menuButton"><a  href="${createLink(uri: '/player/list')}">Player List</a></span>
+
+    <g:ifAnyGranted role="ROLE_ADMIN">
+      <span class="menuButton"><a class="home" href="${createLink(uri: '/secure/index.gsp')}">Home</a></span>
+      <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
     </g:ifAnyGranted>
+
+  </div>
   <div class="body">
     <h1><g:message code="default.list.label" args="[entityName]" /></h1>
     <g:if test="${flash.message}">

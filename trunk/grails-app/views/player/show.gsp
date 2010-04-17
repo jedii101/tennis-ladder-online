@@ -10,7 +10,10 @@
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Player List</g:link></span>
+            <g:ifAnyGranted role="ROLE_ADMIN">
             <span class="menuButton"><g:link class="create" action="create">New Player</g:link></span>
+            </g:ifAnyGranted>
+
         </div>
         <div class="body">
             <h1>Show Player</h1>
@@ -114,9 +117,10 @@
             </div>
             <div class="buttons">
                 <g:form>
-                    <input type="hidden" name="id" value="${playerInstance?.id}" />
+                  <g:ifAnyGranted role="ROLE_ADMIN">
+                  <input type="hidden" name="id" value="${playerInstance?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <g:ifAnyGranted role="ROLE_ADMIN">
+                    
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
                     </g:ifAnyGranted>
                 </g:form>
