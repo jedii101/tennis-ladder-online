@@ -8,10 +8,10 @@
     </head>
     <body>
         <div class="nav">
-
+          <g:isLoggedIn>
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Player List</g:link></span>
-          
+          </g:isLoggedIn>
         </div>
         <div class="body">
             <h1>Create Player:${fieldValue(bean:playerInstance,field:'name')}<br> </h1>
