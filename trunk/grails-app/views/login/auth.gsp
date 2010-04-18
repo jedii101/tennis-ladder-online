@@ -39,10 +39,16 @@
 #login .inner .login_message {color:red;}
 #login .inner .text_ {width:120px;}
 #login .inner .chk {height:12px;}
+#note{color:red;}
 </style>
 </head>
 
-<body>
+<body
+  <div class='errors'>
+                                        Note:login ID will be your: firstname_lastname all lower cased:i.e: will_han
+                                        <br>
+  </div>
+  <br>
 	<div id='login'>
 		<div class='inner'>
 			<g:if test='${flash.message}'>
@@ -50,9 +56,11 @@
 			</g:if>
 			<div class='fheader'>Please Login..</div>
 			<form action='${postUrl}' method='POST' id='loginForm' class='cssform'>
+
 				<p>
 					<label for='j_username'>Login ID</label>
 					<input type='text' class='text_' name='j_username' id='j_username' value='${request.remoteUser}' />
+                                        
 				</p>
 				<p>
 					<label for='j_password'>Password</label>
