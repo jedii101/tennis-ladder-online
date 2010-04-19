@@ -11,9 +11,11 @@ A 'realtime' ladder will also show who's taken challenge, who's available for ch
 
 I break down the functions into 3 phases:
 
-#release 1: player registration , basic messaging. (on April 16)
-#release 2: realtime ladder, match result list, challenger issue challenge, defender accept challenge and winner report result (aim for MAY 10)
-#release 3: enhancement: email notifying, and on going enhancement (TBD)
+  # release 1: player registration , basic messaging. (on April 16)
+
+  # release 2: realtime ladder, match result list, challenger issue challenge, defender accept challenge and winner report result (aim for MAY 10)
+
+  # release 3: enhancement: email notifying, and on going enhancement (TBD)
 
 To the end users they can benefit from all these above and no more efforts will be made than before. I also have backup plans if the online plan fails, we can just keep the way it was running last year.
 
