@@ -7,12 +7,16 @@ class MatchSchedule {
     Date planMatchDate
     String defaultWinner
     DefaultReason defaultReason
+    String status
     String comments
+
+    static hasMany = [ message : Message]
     static transients = [ 'winner','loser']
     static constraints = {
         defaultWinner(nullable:true)
         defaultReason(nullable:true)
         defaultWinner(inList:["DEFENDER", "CHALLENGER"] )
+        status(inList:["CHALLENGE", "RESULT"] )
         comments(nullable:true)
         planMatchDate(nullable:true)
     }
@@ -35,4 +39,9 @@ class MatchSchedule {
         }
         return defender
     }
+
+    def findChallengeAsDefender={
+
+    }
+
 }
