@@ -1,6 +1,11 @@
 class MessageService{
     static transactional = true
-    def sendChallenge={
+    def sendChallenge={fromTeam,toTeam,content->
+    	    //defender still available?
+    	    if(!toTeam.isAvailableForChallenge()){
+    	    	    throw new TeamNotAvailableException("${toTeam} is not available for challenge!")
+    	    }
+    	    //create message
 
     }
 

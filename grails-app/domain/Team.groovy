@@ -94,6 +94,10 @@ class Team  implements Comparable {
         }
         return "+"
     }
+    
+    public boolean isAvailableForChallenge(){
+    	    return ("DEFENDER".equals(status)||"BOTH".equals(status))&&
+    }
 
 //    public MatchSchedule getLastMatchSchedule(){
 //        return MatchSchedule.withCriteria {
