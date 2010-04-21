@@ -4,6 +4,7 @@ class Message {
     Player createBy
     boolean isSystem=false;
 
+    Team from
     Team to
     MatchSchedule schedule
     Message parent
