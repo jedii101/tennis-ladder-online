@@ -4,11 +4,11 @@ security {
 
 	active = true
 
-	loginUserDomainClass = "Player"
+	loginUserDomainClass = "ladder.Player"
 	userName="userName"
 	password="password"
-	authorityDomainClass = "Authority"
-	requestMapClass = "Requestmap"
+	authorityDomainClass = "ladder.Authority"
+	requestMapClass = "ladder.Requestmap"
         useMail="true"
 
         loginForUrl="/login/auth"
