@@ -1,3 +1,4 @@
+package ladder
 class MessageService{
     static transactional = true
     def sendChallenge={fromTeam,toTeam,content->
