@@ -16,7 +16,9 @@ class Team  implements Comparable {
     }
 
     public String toName(){
-	return player1.getName()+(null==player2?"":"\n&"+player2.getName())
+    	    println("@@"+player1)
+	return player1.getName()+
+	(null==player2?"":"\n&"+player2.getName())
     }
     
    
@@ -96,7 +98,7 @@ class Team  implements Comparable {
         return "+"
     }
     
-    public boolean isAvailableForChallenge(){
+    public boolean availableForChallenge(){
     	    if ("DEFENDER".equals(status)||"BOTH".equals(status)){
     	    	    def found=MatchSchedule.findAllByDefenderAndStatus(this,"CHALLENGE")
     	    	    if(found){
