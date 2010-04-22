@@ -7,8 +7,11 @@ import org.apache.commons.lang.StringUtils
  * @author will
  */
 class LadderUtils {
+	static void init(){
+//	String.metaClass.mixin StringUtils	
+	}
     static String formatName(String name){
-        return (null==name)?"":name.toLowerCase().capitalize();
+        return (null==name)?"":StringUtils.capitalize(name.toLowerCase());
     }
 	
 }
