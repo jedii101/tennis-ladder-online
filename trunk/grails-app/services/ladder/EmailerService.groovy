@@ -1,3 +1,4 @@
+package ladder
 import javax.mail.MessagingException
 
 import org.springframework.mail.MailException
