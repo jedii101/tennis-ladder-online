@@ -10,6 +10,9 @@ class LevelPosition implements Comparable {
     }
 
     int compareTo(obj) {
+    	        	  if( ladder.name!=obj.ladder.name){
+    	    	throw new     LadderSystemException("can not compare levels for different ladder!")
+    	    }	
         return ((this.level-obj.level)!=0)?(this.level-obj.level):(pos-obj.pos)
     }
 

@@ -12,6 +12,9 @@ class Level implements Comparable {
   
 
     int compareTo(obj) {
+    	    if( ladder.name!=obj.ladder.name){
+    	    	throw new     LadderSystemException("can not compare levels for different ladder!")
+    	    }	
         return level-obj.level
     }
     public String getName(){
