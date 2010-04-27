@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.will.data.entity.Configuration;
+import com.will.data.entity.Configuration.PROPERTIES;
 import com.will.mail.MailTemplate;
 import com.will.service.DataStoreService;
 import com.will.service.MailerService;
@@ -52,6 +53,42 @@ public class AdminServlet extends HttpServlet {
 	    log.info("hit!");
 	    String user=request.getParameter("admin");
 	    String passwd=request.getParameter("password");
+	    if((!"will".equalsIgnoreCase(user))||(!"tennis".equals(passwd))){
+		log.warning("ahthentication failed!");
+		log.warning("ip:"+request.getRemoteAddr());
+		log.warning("user:"+user);
+		log.warning("passwd:"+passwd);
+		return;//do nothing
+	    }
+	    updateProperties(request, user);
+	    mailService.sendMail(new MailTemplate());
+	}
+
+	protected void updateProperties(HttpServletRequest request,String updateBy){
+	    for (PROPERTIES prop : Configuration.PROPERTIES.values()) {
+		String value=request.getParameter(prop.toString());
+
+//		    if(null==url||!url.startsWith("http://")){
+//			log.warning("invalid url:"+url);
+//		    }
+		    Configuration c=new Configuration();
+		    c.setProperty(prop);
+		    c.setValue(value);
+		    c.setUpdateBy(updateBy+"@"+request.getRemoteAddr());
+
+//		     service=new DataStoreService();
+
+		    dataService.saveConfig(c);
+		    System.out.println("new config:"+c);
+	    }
+
+
+	}
+
+	protected void xxdoService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    log.info("hit!");
+	    String user=request.getParameter("admin");
+	    String passwd=request.getParameter("password");
 	    String url=request.getParameter("redirectURL");
 	    if((!"will".equalsIgnoreCase(user))||(!"tennis".equals(passwd))){
 		log.warning("ahthentication failed!");
@@ -80,7 +117,6 @@ public class AdminServlet extends HttpServlet {
 	    out.println("new redirect url:"+url);
 
 	}
-
 	public static String getRedirectURL(){
 
 	    return dataService.getRedirectURL();

@@ -10,6 +10,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class Configuration {
     public enum PROPERTIES{
 	URL_REDIRECT,
+	MAIN_TITLE,
+	MAIN_MESSAGE,
+	MAIN_MAINTAIN_MESSAGE,
 	EMAIL_SENDFROM,
 	EMAIL_STANDARD_SUBJECT,
 	EMAIL_RESIPTANT,
