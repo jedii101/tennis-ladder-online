@@ -13,7 +13,7 @@ class TeamTests extends GrailsUnitTestCase {
         team=new Team(player1:p1,player2:p2,status:"DEFENDER",ladder:new Ladder())
 
 
-                def genMe=this.&genLevelPosition
+                def genMe=(new LevelPositionTests()).&genLevelPosition
         def genLadder=(new LadderTests()).&genLadder
         def genLevel=(new LevelTests()).&genLevel
         Ladder mixLadder=genLadder("MIX DOUBLES",null)
@@ -61,6 +61,7 @@ void testFlip(){
 
 
     void testAvailableForChallenge(){
+    	    
 
     }
 }

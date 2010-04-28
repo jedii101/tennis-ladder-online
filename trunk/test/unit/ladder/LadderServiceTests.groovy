@@ -12,6 +12,12 @@ class LadderServiceTests extends GrailsUnitTestCase {
     }
 
     void testCreateLadder() {
+    	def testLadder = []
+        mockDomain(Ladder, testLadder)
+        def testLevel = []
+        mockDomain(Level, testLevel)
+        def testLevelPosition = []
+        mockDomain(LevelPosition, testLevelPosition)
         def ls=new LadderService()
         def mixLadder=ls.createLadder("mix double",1,2,3)
         println(mixLadder)

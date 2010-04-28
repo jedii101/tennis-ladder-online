@@ -3,7 +3,7 @@ class Team  implements Comparable {
     Player player1
     Player player2
     //    LevelPosition position
-    String status
+    String status="BOTH"
     
     static transients = [ 'defenders','shortStatus' ]
     Ladder ladder
