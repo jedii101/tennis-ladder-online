@@ -11,7 +11,8 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void testSomething() {
-
+    def generateMS={int i,String status,Ladder ladder->
+        def pt=new PlayerTests();
+        
     }
 }

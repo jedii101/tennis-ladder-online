@@ -20,8 +20,10 @@ class Level implements Comparable {
     public String getName(){
         return level
     }
-
-    public String toString(){
+   public String toString(){
+   	   return LadderUtils.dumpme(this)
+    }
+    public String info(){
         return getName()
     }
     public  int minus(Level right) {
@@ -97,5 +99,14 @@ class Level implements Comparable {
             }
         }
         return bigPos
+    }
+
+    
+    public LevelPosition firstAvailablePosition(){
+    	    levelposition.each{
+    	    	    if(null==it.team){
+    	    	    	    return it
+    	    	    }
+    	    }
     }
 }

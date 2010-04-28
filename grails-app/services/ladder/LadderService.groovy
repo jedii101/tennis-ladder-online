@@ -8,7 +8,7 @@ class LadderService {
         numberOfPositionsForEachLevel.each(){
              Level l=new Level(level:currentLevel++)
             for(_pos in 1..it){
-                LevelPosition lp=new LevelPosition(pos:_pos,ladder:ladder)
+                LevelPosition lp=new LevelPosition(pos:_pos,ladder:ladder,level:l)
                 l.addToLevelposition(lp)
             }
             ladder.addToLevels(l)
@@ -19,5 +19,9 @@ class LadderService {
 //
 //            currentLevel++
 //        }
+    }
+    
+    def fillLadder(Ladder ladder, Team...team){
+    	    
     }
 }
