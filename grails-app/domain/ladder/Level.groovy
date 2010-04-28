@@ -1,5 +1,5 @@
 package ladder
-class Level implements Comparable {
+class Level extends EntityBase implements Comparable {
     int level
     static belongsTo = [ladder:Ladder]
     SortedSet levelposition
@@ -20,9 +20,7 @@ class Level implements Comparable {
     public String getName(){
         return level
     }
-   public String toString(){
-   	   return LadderUtils.dumpme(this)
-    }
+
     public String info(){
         return getName()
     }
