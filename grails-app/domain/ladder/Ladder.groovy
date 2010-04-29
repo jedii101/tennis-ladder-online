@@ -13,6 +13,7 @@ class Ladder extends EntityBase{
     
     public void addTeam(Team team){
     //add team to last available level position
+    	team.ladder=this
     	firstAvailable().team=team
     }
     

@@ -11,8 +11,13 @@ class Team  implements Comparable {
         status(inList:["DEFENDER", "CHALLENGER","BOTH"] )
 //        lastMatchSchedule(nullable:true)
 //        position(nullable:true)
+	ladder(nullable:true)
         player2(nullable:true)
 
+    }
+    
+    public void setStatus(String s){
+    	s?:"BOTH"	    
     }
 
     public String toName(){
