@@ -13,24 +13,24 @@ class Ladder extends EntityBase{
     
     public void addTeam(Team team){
     //add team to last available level position
+    	firstAvailable().team=team
     }
     
-    public LevelPosition getFirstAvailable(){
-    
+    public LevelPosition firstAvailable(){
+    /*
         def mylevels= Level.list([sort: 'level', order: 'asc',
         fetch: [levelposition: 'eager']])
         
-        println(mylevels)
-        
-        mylevels.each{
-        LevelPosition lp=it.firstAvailablePosition()
-        println(lp)
-        	if(null!=lp){
-        		return lp 
-        	}
-      	
+        println("mylevels:${mylevels}")
+      */  
+      def firstAvailableLevel=
+        levels.sort().find{
+         null!=it.firstAvailablePosition()
         }
+        if(null==firstAvailableLevel){
         throw new LadderSystemException("no more position available:${this}")
+        }
+        return firstAvailableLevel.firstAvailablePosition()
     }
 
 }
