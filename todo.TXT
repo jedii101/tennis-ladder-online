@@ -11,50 +11,15 @@ auto flip for players staled for 2 weeks.?
 
 dishwasher pickup 3331402
 
--- OT
-*** Phillip Schumacher went offline at 5:04 PM
-(10:29 AM) Will Han: Phil, I worked around 4 hours earlier this moring, how do I log this time?
-(10:30 AM) Phillip Schumacher: What did you work on? The performance issues?
-(10:30 AM) Will Han: performance issues and a CMF bug
-(10:30 AM) Phillip Schumacher: Don't we already have a ticket for the performance?
-(10:32 AM) Phillip Schumacher: Ticket 2705
-(10:33 AM) Will Han: yes, we do, i mean how do we keep track of OT?
-(10:35 AM) Phillip Schumacher: I will ask HR.
-(10:36 AM) Will Han: Okay thanks
-(11:40 AM) Phillip Schumacher: Good morning Will.
-(11:40 AM) Phillip Schumacher: In regards to the OT... I got the following response back from HR.
-(11:40 AM) Phillip Schumacher: It is expected that Decisioning Solutions employees will work a regularly scheduled work week Monday to Friday, from 8:30 a.m. to 5:00 p.m. each day; however, there may, from time to time, be circumstances where overtime is required.
 
-Should overtime become excessive, employees can seek approval for time in lieu of overtime worked through their direct supervisor.  Each request will be evaluated on a case by case basis.”
-
-(11:40 AM) Phillip Schumacher: This is from your employee contract with DS.
-(11:41 AM) Will Han: okay can I get time in lieu Phil?
-(11:42 AM) Phillip Schumacher: How many hours did you work over time Will?
-(11:43 AM) Will Han: more than 3 hours:12~2:20am
-7:19am~8:38 am
-(11:44 AM) Phillip Schumacher: In your contract it is in the wording "should over time become excessive". Will do you consider 3 hours overtime execessive?
-(11:45 AM) Will Han: yes...in the morning...
-(11:45 AM) Will Han: but it's all up to you
-(11:46 AM) Will Han: i just don't want to block the process that's why i take initialtives to work longer hours
-(11:47 AM) Will Han: i consider this switching shift is for this purpose
-(11:49 AM) Will Han: of course i am not taking off on a busy time
-(11:49 AM) Phillip Schumacher: Sorry Will did not get your last point about switching shift.
-(11:49 AM) Will Han: we working in night shift want to make the development cycle faster, right?
-(11:50 AM) Phillip Schumacher: Correct.
-(11:50 AM) Will Han: that means when i sleep, somebody else can still work, others sleep, i can work...
-(11:50 AM) Phillip Schumacher: Correct.
-(11:53 AM) Phillip Schumacher: But Will the hours we agreed were something like 10:00 - 4:00 and 10:00 PM to Midnight. Whilst it's shift work it's still a normal day (hours wise). Yes however you have worked additional hours around this.
-(11:54 AM) Phillip Schumacher: Anyways I will pass this onto HR again so you guys can discuss. HR make the ultimate decision on this.
-(11:54 AM) Will Han: not neccessary to me, just want to state my point
-(11:54 AM) Phillip Schumacher: Ok Thanks Will.
-(11:55 AM) Phillip Schumacher: In the future could you please send me OT hours? worked?
-(11:55 AM) Phillip Schumacher: If they do become substantial then let's review.
-(11:55 AM) Will Han: i should seek for your agreement if neccessary OT
-
--- sears home delivery
-18668872252
-80004694663
-
-9052160344
-onthespot.biz
-kyle church
+--
+grails-app/domain/ladder/Level.groovy:        return Level.withCriteria {
+grails-app/domain/ladder/Level.groovy:        return withCriteria {
+grails-app/domain/ladder/Level.groovy~:        return Level.withCriteria {
+grails-app/domain/ladder/Level.groovy~:        return withCriteria {
+grails-app/domain/ladder/LevelPosition.groovy:        return LevelPosition.withCriteria {
+grails-app/domain/ladder/LevelPosition.groovy:        return LevelPosition.withCriteria {
+grails-app/domain/ladder/LevelPosition.groovy~:        return LevelPosition.withCriteria {
+grails-app/domain/ladder/LevelPosition.groovy~:        return LevelPosition.withCriteria {
+grails-app/domain/ladder/Team.groovy:        return LevelPosition.withCriteria {
+grails-app/domain/ladder/Team.groovy://        return MatchSchedule.withCriteria {

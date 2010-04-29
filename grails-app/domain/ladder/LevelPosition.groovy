@@ -20,9 +20,8 @@ class LevelPosition extends EntityBase implements Comparable {
         return "L"+level?.name+":P"+pos
     }
 
-    public String toString(){
-        println("nono")
-        return getName()+team
+    public String info(){
+    	    return getName()+":${team}"
     }
 
     public static List listOfLevelPositon (Ladder ladder){
@@ -32,7 +31,7 @@ class LevelPosition extends EntityBase implements Comparable {
             order('pos', 'asc') // or 'asc'
         }
     }
-    public  List getAbovePositions (){
+    public  List abovePositions (){
         Level levelAbove=levelPosition.level.aboveLevel
         return LevelPosition.withCriteria {
             eq('level',levelAbove)

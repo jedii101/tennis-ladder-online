@@ -13,16 +13,45 @@ class LadderUtils {
     static String formatName(String name){
         return (null==name)?"":StringUtils.capitalize(name.toLowerCase());
     }
-    
+    static List dumpStarted=new Vector();
+    static List dumpEnded=new Vector();
     static String dumpme(Object o){
+    	    String me=null
+    	    if(!dumpStarted.contains(o)){
+    	    	    dumpStarted.add(o)
+    	     me= o.dump()
+    	    dumpEnded.add(o)
+    	    }else{
+    	    	return "referenced"	    
+    	    }
+    	    if(dumpStarted.size()==dumpEnded.size()){
+    	    	    println("loop finished")
+    	    	    dumpStarted.clear()
+    	    	    dumpEnded.clear()
+    	    	    me.replaceAll("<","\\n<")
+    	    }
+    	    return me
+    	    /*
+    	    dumpStarted.add(o)
        	   StringBuffer sb=new StringBuffer()
+
+       	   sb.append("<")
    	   o.properties.each{
+
+   	   	   try{
+   	   	   	   if(!dumpStarted.contains(it)){
    	   	   sb.append(it)
    	   	   sb.append("\n")
    	   	   //sb.append("${it.name}:${it.value}")
-   	   }
+   	   	   	   }
+   	   	   }catch(Exception e){
+   	   	   	e.printStackTrace()	   
+   	   	   }
+   	   }   
+   	   sb.append(">\n")
+   	   dumpEnded.add(o)
    	   return sb.toString()	    
+ */
     }
-	
 }
 

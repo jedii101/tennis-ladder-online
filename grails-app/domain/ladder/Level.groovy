@@ -12,6 +12,7 @@ class Level extends EntityBase implements Comparable {
   
 
     int compareTo(obj) {
+
     	    if( ladder.name!=obj.ladder.name){
     	    	throw new     LadderSystemException("can not compare levels for different ladder!")
     	    }	
@@ -35,7 +36,7 @@ class Level extends EntityBase implements Comparable {
         }
     }
 
-    public String getLevelTeam(){
+    public String infoLevelTeam(){
         //for each levelposition, print team name, team status
         def levelTeam=""
         //println(" here!")
@@ -48,11 +49,14 @@ class Level extends EntityBase implements Comparable {
         return levelTeam;
     }
 
-    public Level getAboveLevel(){
+    public Level aboveLevel(){
+    	    return Level.findWhere([level:(this.level-1)])
+    	    /*
         return withCriteria {
             eq('ladder',ladder)
             eq('level',level-1) // or 'asc'
         }.getAt(0)
+        */
     }
 
     public String concatString(String original,String append){
@@ -102,6 +106,7 @@ class Level extends EntityBase implements Comparable {
     
     public LevelPosition firstAvailablePosition(){
     	    levelposition.each{
+    	    	    println(it.team)
     	    	    if(null==it.team){
     	    	    	    return it
     	    	    }

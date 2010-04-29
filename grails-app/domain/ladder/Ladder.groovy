@@ -17,15 +17,20 @@ class Ladder extends EntityBase{
     
     public LevelPosition getFirstAvailable(){
     
-        def levels= Level.list([sort: 'level', order: 'asc',
+        def mylevels= Level.list([sort: 'level', order: 'asc',
         fetch: [levelposition: 'eager']])
-        levels.each{
-        	if(null!=it.firstAvailablePosition()){
-        		return it.firstAvailablePosition() 
+        
+        println(mylevels)
+        
+        mylevels.each{
+        LevelPosition lp=it.firstAvailablePosition()
+        println(lp)
+        	if(null!=lp){
+        		return lp 
         	}
-        	throw new LadderSystemException("no more position available:${this}")
-        	
+      	
         }
+        throw new LadderSystemException("no more position available:${this}")
     }
 
 }
