@@ -16,6 +16,21 @@ class LadderServiceTests extends GrailsUnitTestCase {
          ls=new LadderService()
          mixLadder=ls.createLadder("mix double",1,2,3)
          mixLadder.save()
+         
+         def testPlayer = []
+        mockDomain(Player, testPlayer)
+        
+        def testTeam=[]
+        mockDomain(Team, testTeam)
+        
+        //generate teams
+         def pt=new TeamTests();
+        def tg=pt.&generateTeam
+        
+        for(i in 0..9){
+        	tg(i,null,null).save()
+        }
+        
     }
 
     protected void tearDown() {
@@ -44,7 +59,13 @@ class LadderServiceTests extends GrailsUnitTestCase {
     }
     
     void testFirstAvailable(){
-    assertEquals("L0:P1:null",mixLadder.firstAvailable().info())	    
+    	    assertEquals("L0:P1:null",mixLadder.firstAvailable().info())
+    	     def teams=Team.findAll()
+    	     teams.each{
+    	    
+		mixLadder.addTeam(it)
+	     }
+	     println(mixLadder)
     }
 
     void testButtom(){
