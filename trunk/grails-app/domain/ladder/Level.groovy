@@ -105,11 +105,11 @@ class Level extends EntityBase implements Comparable {
 
     
     public LevelPosition firstAvailablePosition(){
-    	    levelposition.each{
-    	    	    println(it.team)
-    	    	    if(null==it.team){
-    	    	    	    return it
-    	    	    }
+    	    LevelPosition result=
+    	    levelposition.sort().find{it->
+    	    	    	    	    (null==it.team)
     	    }
+    	    println("find:${result}")
+    	    return result
     }
 }

@@ -15,6 +15,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
         mockDomain(LevelPosition, testLevelPosition)
          ls=new LadderService()
          mixLadder=ls.createLadder("mix double",1,2,3)
+         mixLadder.save()
     }
 
     protected void tearDown() {
@@ -27,11 +28,23 @@ class LadderServiceTests extends GrailsUnitTestCase {
         assertEquals(3,mixLadder.levels.size())
 
     }
-
+    void testListLevels(){
+    	    println("mixladder.levels:${mixLadder.levels}")
+    	    int i=0
+    	    mixLadder.levels.sort().each{
+    	    assertEquals(i++,it.level)
+    	    
+    	    }
+    }
+    
     void testTop(){
         assertEquals(0,mixLadder.levels.min().level)
         assertEquals("L0:P1:null",mixLadder.levels.min().levelposition.min().info())
-        assertEquals("L0:P1:null",mixLadder.getFirstAvailable())
+        
+    }
+    
+    void testFirstAvailable(){
+    assertEquals("L0:P1:null",mixLadder.firstAvailable().info())	    
     }
 
     void testButtom(){
