@@ -33,4 +33,20 @@ class LevelTests extends GrailsUnitTestCase {
         
         //        assertEquals(0,l1.compareTo(l3))
     }
+
+    public void testAboveLevel(){
+    	def testLadder = []
+        mockDomain(Ladder, testLadder)
+        def testLevel = []
+        mockDomain(Level, testLevel)
+        def testLevelPosition = []
+        mockDomain(LevelPosition, testLevelPosition)
+        def ls=new LadderService()
+        def mixLadder=ls.createLadder("mix double",1,2,3)
+
+    }
+
+    public void testFirstAvailablePosition(){
+        asser
+    }
 }
