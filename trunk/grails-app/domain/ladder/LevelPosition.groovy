@@ -7,6 +7,10 @@ class LevelPosition extends EntityBase implements Comparable {
     static transients = [ 'name','abovePositions','atLadderTop','inBottomQueue','loserTeam' ]
     static constraints = {
         //teams.size <=level
+	team(nullable:true)
+    }
+    static mapping = {
+        sort "pos"
     }
 
     int compareTo(obj) {
@@ -40,12 +44,12 @@ class LevelPosition extends EntityBase implements Comparable {
     }
 
     public boolean isAtLadderTop(){
-        return level.level==1
+        return level.lev==0
     }
     public boolean isInBottomQueue(){
-        return level.level==1000
+        return level.lev==1000
     }
-    public void setLoserTeam(Team loser){
+    public void posLoserTeam(Team loser){
         //if(isInBottomQueue()){
         this.setTeam(null)
             level.pushLoserToEndOfLevel(loser)

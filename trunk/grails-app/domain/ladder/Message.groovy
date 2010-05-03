@@ -1,7 +1,7 @@
 package ladder
-class Message {
+class Message  extends EntityBase{
     String message
-    Date created
+    Date created=new Date()
     Player createBy
     boolean isSystem=false;
 
@@ -15,9 +15,10 @@ class Message {
 
     static constraints = {
         parent(nullable:true)
+	from(nullable:true)
         to(nullable:true)
         schedule(nullable:true)
-        type(inList:["CHALLENGE", "ACCEPT"] )
+        type(inList:["CHALLENGE", "ACCEPT","RESULT","SYSTEM","SYSTEM_TOP"] )
     }
     static mapping = {
 	sort created:"desc"

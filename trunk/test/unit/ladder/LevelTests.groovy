@@ -13,7 +13,7 @@ class LevelTests extends GrailsUnitTestCase {
     }
 
     def genLevel={int _level,Ladder _ladder,SortedSet _levelPositions->
-        return new Level(level:_level,ladder:_ladder,levelposition:_levelPositions)
+        return new Level(lev:_level,ladder:_ladder,levelposition:_levelPositions)
     }
 
     public void testCompare(){
@@ -46,7 +46,4 @@ class LevelTests extends GrailsUnitTestCase {
 
     }
 
-    public void testFirstAvailablePosition(){
-        asser
-    }
 }

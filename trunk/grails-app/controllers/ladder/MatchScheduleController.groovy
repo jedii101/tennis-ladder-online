@@ -100,11 +100,7 @@ params.max=100
         def matchScheduleInstance = new MatchSchedule(params)
         if(!matchScheduleInstance.hasErrors()
             && matchScheduleInstance.save()) {
-println("winner"+matchScheduleInstance.winner)
-println("loser"+matchScheduleInstance.loser)
-            matchScheduleInstance.winner.winOver(matchScheduleInstance.loser)
-            matchScheduleInstance.winner.save()
-            matchScheduleInstance.loser.save()
+xx
             flash.message = "MatchSchedule ${matchScheduleInstance.id} created"
             redirect(action:show,id:matchScheduleInstance.id)
         }
