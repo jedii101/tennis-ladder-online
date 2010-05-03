@@ -46,7 +46,16 @@ class LevelPosition  implements Comparable, EntityBase {
     public boolean atLadderTop(){
         return level.lev==0
     }
+    public static LevelPosition firstAvailable(){
+	    def result=
+        LevelPosition.findAll().sort{it}.find{it->
+            (null==it.team)
+        }
+	return result
+    }
+    
     public boolean inBottomQueue(){
+	    /*
         def maxLev=Level.findAll().max()
         if(maxLev==null){
             throw new LadderSystemException("level is not created!")
@@ -54,6 +63,8 @@ class LevelPosition  implements Comparable, EntityBase {
         int maxLevValue=maxLev.lev
         println("maxLel.lev:${maxLev.lev}")
         return (level.lev==maxLevValue)
+	*/
+	return level.lev==(LevelPosition.firstAvailable().level.lev)
     }
     public void posLoserTeam(Team loser){
         //if(isInBottomQueue()){
