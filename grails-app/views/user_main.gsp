@@ -36,7 +36,7 @@
   <h1 style="margin-left:20px;">Ladder final standing 2009</h1>
   <div class="dialog" style="margin-left:20px;width:60%;">
     <ul>
-      <img src="/TennisLadder/images/ladder_2009.png" alt="HTML tutorial" width="700" height="500" />
+      <img src="${createLinkTo(dir:'images',file:'ladder_2009.png')}" alt="HTML tutorial" width="700" height="500" />
     </ul>
   </div>
 </body>
