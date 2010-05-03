@@ -63,10 +63,10 @@ class Team  extends EntityBase implements Comparable {
         }
 	println("loserPosition:${loserPosition}")
 	println("winnerPosition:${winnerPosition}")
-        if(winnerPosition.isAtLadderTop()||loserPosition.isAtLadderTop()){
+        if(winnerPosition.atLadderTop()||loserPosition.atLadderTop()){
             this.status="DEFENDER"
         }
-        if(loserPosition.isInBottomQueue()||loserPosition.isInBottomQueue()){
+        if(loserPosition.inBottomQueue()||loserPosition.inBottomQueue()){
             loser.status="BOTH"
         }
     }
