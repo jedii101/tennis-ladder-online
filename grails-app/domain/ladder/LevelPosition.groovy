@@ -4,7 +4,7 @@ class LevelPosition extends EntityBase implements Comparable {
     Ladder ladder
     static belongsTo = [level:Level]
     Team team
-    static transients = [ 'name','abovePositions','atLadderTop','inBottomQueue','loserTeam' ]
+    static transients = [ 'name','abovePositions','loserTeam' ]
     static constraints = {
         //teams.size <=level
 	team(nullable:true)
@@ -43,11 +43,17 @@ class LevelPosition extends EntityBase implements Comparable {
         }
     }
 
-    public boolean isAtLadderTop(){
+    public boolean atLadderTop(){
         return level.lev==0
     }
-    public boolean isInBottomQueue(){
-        return level.lev==1000
+    public boolean inBottomQueue(){
+        def maxLev=Level.findAll().max()
+        if(maxLev==null){
+            throw new LadderSystemException("level is not created!")
+        }
+        int maxLevValue=maxLev.lev
+        println("maxLel.lev:${maxLev.lev}")
+        return (level.lev==maxLevValue)
     }
     public void posLoserTeam(Team loser){
         //if(isInBottomQueue()){

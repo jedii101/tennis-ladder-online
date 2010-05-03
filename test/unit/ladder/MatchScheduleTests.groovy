@@ -16,7 +16,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         def testLevelPosition = []
         mockDomain(LevelPosition, testLevelPosition)
         ls=new LadderService()
-        mixLadder=ls.createLadder("mix double",1,2,3)
+        mixLadder=ls.createLadder("mix double",1,2,3,10)
         //replace mixLadder.save()
         new CascadeDomainSaver().saveCascade(mixLadder)
 	 
@@ -50,6 +50,9 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         mockDomain(Message, testMessage)
         def testDR = []
         mockDomain(DefaultReason, testDR)
+
+        def maxLev=Level.findAll().max()
+        println("maxLel:-setup${maxLev}")
     }
 
     protected void tearDown() {
@@ -59,7 +62,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
     protected void fillTeam(){
         def teams=Team.findAll()
         println("teams:${teams}")
-        for(i in 0..4){
+        for(i in 0..8){
     
             mixLadder.addTeam(teams[i])
         }
@@ -164,4 +167,99 @@ class MatchScheduleTests extends GrailsUnitTestCase {
 
     }
 
+     void testReportMatch_middleTeam_win(){
+        println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
+        def pd=Player.findByUserName("3first1_3last1")
+        Team d=Team.fetchTeamByPlayer(pd)
+
+        def pc=Player.findByUserName("5first1_5last1")
+        Team c=Team.fetchTeamByPlayer(pc)
+
+
+        // team defender win
+        def m=new MatchSchedule(defender:d,challenger:c,
+	    defenderScore:8,challengerScore:3,matchDate:new Date(110,03,20)
+	    ,reportBy:pd,ladder:d.ladder)
+        println("m:${m}")
+        matchService.reportResults(m)
+        println("ladder:${Ladder.findAll()}")
+	assertEquals("CHALLENGER",d.status)
+	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",d.position.info())
+
+	assertEquals("DEFENDER",c.status)
+	assertEquals("L2:P2:5first1.5last1\n&5first2.5last2",c.position.info())
+
+    }
+
+    void testReportMatch_middleTeam_lost(){
+        println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
+        def pd=Player.findByUserName("3first1_3last1")
+        Team d=Team.fetchTeamByPlayer(pd)
+
+        def pc=Player.findByUserName("5first1_5last1")
+        Team c=Team.fetchTeamByPlayer(pc)
+
+
+        // team defender lost by default
+        def m=new MatchSchedule(defender:d,challenger:c,
+	    defenderScore:3,challengerScore:3,matchDate:new Date(110,03,20)
+	    ,reportBy:pc,ladder:d.ladder,defaultWinner:"CHALLENGER",defaultReason:new DefaultReason(code:"fail to meet challenge for rematch"))
+        println("m:${m}")
+        matchService.reportResults(m)
+        println("ladder:${Ladder.findAll()}")
+	assertEquals("DEFENDER",d.status)
+	assertEquals("L2:P2:3first1.3last1\n&3first2.3last2",d.position.info())
+
+	assertEquals("CHALLENGER",c.status)
+	assertEquals("L1:P2:5first1.5last1\n&5first2.5last2",c.position.info())
+
+    }
+ void testReportMatch_bottomTeam_lost(){
+        println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
+        def pd=Player.findByUserName("6first1_6last1")//L2P3
+        Team d=Team.fetchTeamByPlayer(pd)
+
+        def pc=Player.findByUserName("9first1_9last1")//L3P3
+        Team c=Team.fetchTeamByPlayer(pc)
+
+
+        // team defender win by default
+        def m=new MatchSchedule(defender:d,challenger:c,
+	    defenderScore:0,challengerScore:0,matchDate:new Date(110,03,20)
+	    ,reportBy:pc,ladder:d.ladder,defaultWinner:"DEFENDER",defaultReason:new DefaultReason(code:"fail to meet challenge for rematch"))
+
+        println("m:${m}")
+        matchService.reportResults(m)
+        println("ladder:${Ladder.findAll()}")
+	assertEquals("CHALLENGER",d.status)
+	assertEquals("L2:P3:6first1.6last1\n&6first2.6last2",d.position.info())
+
+	assertEquals("BOTH",c.status)
+	assertEquals("L3:P3:9first1.9last1\n&9first2.9last2",c.position.info())
+
+    }
+
+    void testReportMatch_bottomTeam_win(){
+        println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
+        def pd=Player.findByUserName("6first1_6last1")
+        Team d=Team.fetchTeamByPlayer(pd)
+
+        def pc=Player.findByUserName("9first1_9last1")
+        Team c=Team.fetchTeamByPlayer(pc)
+
+
+        // team defender lost by default
+        def m=new MatchSchedule(defender:d,challenger:c,
+	    defenderScore:3,challengerScore:8,matchDate:new Date(110,03,20)
+	    ,reportBy:pc,ladder:d.ladder,defaultWinner:"CHALLENGER",defaultReason:new DefaultReason(code:"fail to meet challenge for rematch"))
+        println("m:${m}")
+        matchService.reportResults(m)
+        println("ladder:${Ladder.findAll()}")
+	assertEquals("DEFENDER",d.status)
+	assertEquals("L3:P3:6first1.6last1\n&6first2.6last2",d.position.info())
+
+	assertEquals("CHALLENGER",c.status)
+	assertEquals("L2:P3:9first1.9last1\n&9first2.9last2",c.position.info())
+
+    }
 }
