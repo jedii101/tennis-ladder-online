@@ -1,5 +1,5 @@
 package ladder
-class Ladder extends EntityBase{
+class Ladder implements EntityBase{
     String name
     static hasMany = [levels:Level]
     static constraints = {

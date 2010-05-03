@@ -1,5 +1,5 @@
 package ladder
-class Message  extends EntityBase{
+class Message  implements EntityBase{
     String message
     Date created=new Date()
     Player createBy

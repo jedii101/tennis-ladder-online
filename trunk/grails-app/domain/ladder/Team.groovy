@@ -1,5 +1,5 @@
 package ladder
-class Team  extends EntityBase implements Comparable {
+class Team  implements Comparable, EntityBase {
     Player player1
     Player player2
     
@@ -11,7 +11,7 @@ class Team  extends EntityBase implements Comparable {
     static constraints = {
         status(inList:["DEFENDER", "CHALLENGER","BOTH","ON-CHALLENGE","DISABLED","VACATION"] )
 //        lastMatchSchedule(nullable:true)
-        position(nullable:true)
+      //  position(nullable:true)
 	ladder(nullable:true)
         player2(nullable:true)
 	lastMatchDate(nullable:true)
@@ -141,11 +141,11 @@ class Team  extends EntityBase implements Comparable {
     public boolean available(){
 	    return status==~/DEFENDER|BOTH/
     }
-
+/**
     public LevelPosition getPosition(){
         return LevelPosition.findByTeam(this)
     }
-
+*/
     public static Team fetchTeamByPlayer(Player p){
 	    def team=Team.findByPlayer1(p)?:Team.findByPlayer2(p)
 	    return team

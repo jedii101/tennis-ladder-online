@@ -1,5 +1,5 @@
 package ladder
-class Level extends EntityBase implements Comparable {
+class Level  implements Comparable, EntityBase {
     int lev
     static belongsTo = [ladder:Ladder]
     //SortedSet levelposition
