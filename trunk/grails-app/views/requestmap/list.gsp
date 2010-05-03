@@ -1,3 +1,4 @@
+<%! import ladder.* %> 
 <head>
 	<meta name="layout" content="main" />
 	<title>Requestmap List</title>
