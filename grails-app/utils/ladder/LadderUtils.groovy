@@ -28,7 +28,7 @@ class LadderUtils {
     	    	    println("loop finished")
     	    	    dumpStarted.clear()
     	    	    dumpEnded.clear()
-    	    	    me.replaceAll("<","\\n<")
+    	    	    me.replaceAll("<","\\\\n<")
     	    }
     	    return me
     	    /*
@@ -53,5 +53,7 @@ class LadderUtils {
    	   return sb.toString()	    
  */
     }
+    
+
 }
 

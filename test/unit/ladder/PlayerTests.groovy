@@ -16,12 +16,17 @@ class PlayerTests extends GrailsUnitTestCase {
     void testValidate() {
         def player1=generatePlayer("one",1)
         println(player1)
+        assertTrue player1.validate()
+	
+	player1=new Player(firstName:"one",lastName:"tow")
+
         assertFalse player1.validate()
 
     }
 
      def generatePlayer={String prefix,int i->
-        def p1=new Player(firstName:"${prefix}first${1}",lastName:"${prefix}last${i}",userName:"${prefix}first${i}_${prefix}last${1}")
+        def p1=new Player(firstName:"${prefix}first${i}",lastName:"${prefix}last${i}"
+	,userName:"${prefix}first${i}_${prefix}last${i}",email:"will.han@gmail.com",phone:"4165538722",password:"bcd",authorities:"ROLE_USER")
         return p1
     }
 }

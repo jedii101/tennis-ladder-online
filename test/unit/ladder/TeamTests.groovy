@@ -5,23 +5,65 @@ import BootStrap
 
 class TeamTests extends GrailsUnitTestCase {
     Team team
+    def ls
+    def matchService=new MatchService()
+    def mixLadder
     protected void setUp() {
         super.setUp()
-        mockForConstraintsTests(Team)
-        def p1=new Player(firstName:"first1",lastName:"last1",userName:"first1_last1")
-        def p2=new Player(firstName:"first2",lastName:"last2",userName:"first2_last2")
-        team=new Team(player1:p1,player2:p2,status:"DEFENDER",ladder:new Ladder())
 
-
-                def genMe=(new LevelPositionTests()).&genLevelPosition
-        def genLadder=(new LadderTests()).&genLadder
-        def genLevel=(new LevelTests()).&genLevel
-        Ladder mixLadder=genLadder("MIX DOUBLES",null)
-        Ladder singleLadder=genLadder("SINGLES",null)
-        LevelPosition lp1=genMe(1,mixLadder,genLevel(1,mixLadder,null),null)
-        LevelPosition lp2=genMe(1,mixLadder,genLevel(2,mixLadder,null),null)
+        def testLadder = []
+        mockDomain(Ladder, testLadder)
+        def testLevel = []
+        mockDomain(Level, testLevel)
+        def testLevelPosition = []
+        mockDomain(LevelPosition, testLevelPosition)
+        ls=new LadderService()
+        mixLadder=ls.createLadder("mix double",1,2,3)
+        //replace mixLadder.save()
+        new CascadeDomainSaver().saveCascade(mixLadder)
+	 
+        def lp=LevelPosition.findAll()
+        println("lp:${lp}")
+        println("ladder.findAll:${Ladder.findAll()}")
+        println("level.findAll:${Level.findAll()}")
+         
+        def testPlayer = []
+        mockDomain(Player, testPlayer)
+        
+        def testTeam=[]
+        mockDomain(Team, testTeam)
+        
+        //generate teams
+        def pt=new TeamTests();
+        def tg=pt.&generateTeam
+        
+        for(i in 1..9){
+            new CascadeDomainSaver().saveCascade(tg(i,"BOTH",mixLadder))
+            //tg(i,null,null).save()
+        }
+	
+	fillTeam()
+	new CascadeDomainSaver().saveCascade(mixLadder)
+	println("mixLadder:after setup:${mixLadder}")
+	
+        def testMatchSchedule = []
+        mockDomain(MatchSchedule, testMatchSchedule)
+        def testMessage = []
+        mockDomain(Message, testMessage)
+        def testDR = []
+        mockDomain(DefaultReason, testDR)
+	
+	team=Team.findByPlayer1(Player.findByUserName("1first1_1last1"))
     }
-
+    protected void fillTeam(){
+        def teams=Team.findAll()
+        println("teams:${teams}")
+        for(i in 0..4){
+    
+            mixLadder.addTeam(teams[i])
+        }
+	
+    }
     def generateTeam={int i,String status,Ladder ladder->
         def pt=new PlayerTests();
         def pg=pt.&generatePlayer
@@ -36,6 +78,30 @@ class TeamTests extends GrailsUnitTestCase {
 
     protected void tearDown() {
         super.tearDown()
+    }
+    void testDefaultStatus(){
+        def team=new Team()
+        assertEquals("BOTH",team.status)
+        team=new Team(status:"DEFENDER")
+        assertEquals("DEFENDER",team.status)
+    }
+    void testAvailable(){
+	def t=new Team(status:"BOTH")
+	assertTrue(t.available())
+	def t1=new Team(status:"CHALLENGER")
+	assertFalse(t1.available())
+	def t2=new Team(status:"DEFENDER")
+	println("team:${t2.status}:${t2.canChallenge()}")
+	assertTrue(t2.available())
+    }
+    void testCanChallenge(){
+	def t=new Team(status:"BOTH")
+	assertTrue(t.canChallenge())
+	def t1=new Team(status:"CHALLENGER")
+	assertTrue(t1.canChallenge())
+	def t2=new Team(status:"DEFENDER")
+	println("team:${t2.status}:${t2.canChallenge()}")
+	assertFalse(t2.canChallenge())
     }
     void testValidate() {
   
@@ -53,11 +119,12 @@ class TeamTests extends GrailsUnitTestCase {
 
     
     void testToName() {
-        assertEquals("First1.Last1\n&First2.Last2",team.toName())
+        assertEquals("First.Last\n&Will.Han",new Team(player1:new Player(firstName:"first",lastName:"last")
+	,player2:new Player(firstName:"will",lastName:"han")).toName())
     }
-void testFlip(){
+    void testFlip(){
     
-}
+    }
 
 
     void testAvailableForChallenge(){

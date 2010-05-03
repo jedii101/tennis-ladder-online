@@ -15,6 +15,14 @@ class LevelPositionTests extends GrailsUnitTestCase {
     def genLevelPosition={int _pos,Ladder _ladder,Level _level,Team _team->
         return new LevelPosition(pos:_pos,ladder:_ladder,level:_level,team:_team)
     }
+    public void testSave(){
+	    def testLevelPosition = []
+        mockDomain(LevelPosition, testLevelPosition)
+	 def lp1=new LevelPosition(pos:99)
+	 lp1.save()
+	  def lp=LevelPosition.findAll()
+	 println("lp:${lp}")
+    }
 
     public void testCompare(){
         def genMe=this.&genLevelPosition

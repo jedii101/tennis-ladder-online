@@ -1,8 +1,8 @@
 package ladder
 class Level extends EntityBase implements Comparable {
-    int level
+    int lev
     static belongsTo = [ladder:Ladder]
-    SortedSet levelposition
+    //SortedSet levelposition
     static transients = [ 'name','levelTeam' ,'aboveLevel']
     static hasMany = [levelposition:LevelPosition]
    
@@ -10,29 +10,32 @@ class Level extends EntityBase implements Comparable {
         levelposition(nullable:true)
     }
   
+    static mapping = {
+        sort "lev"
+    }
 
     int compareTo(obj) {
 
-    	    if( ladder.name!=obj.ladder.name){
-    	    	throw new     LadderSystemException("can not compare levels for different ladder!")
-    	    }	
-        return level-obj.level
+        if( ladder.name!=obj.ladder.name){
+            throw new     LadderSystemException("can not compare levels for different ladder!")
+        }
+        return lev-obj.lev
     }
     public String getName(){
-        return level
+        return lev
     }
 
     public String info(){
         return getName()
     }
     public  int minus(Level right) {
-        return this.level-right.level
+        return this.lev-right.lev
     }
 
     public static List showLevelForLadder (Ladder ladder){
         return Level.withCriteria {
             eq('ladder',ladder)
-            order('level','asc') // or 'asc'
+            order('lev','asc') // or 'asc'
         }
     }
 
@@ -50,13 +53,13 @@ class Level extends EntityBase implements Comparable {
     }
 
     public Level aboveLevel(){
-    	    return Level.findWhere([level:(this.level-1)])
-    	    /*
+        return Level.findWhere([lev:(this.lev-1)])
+        /*
         return withCriteria {
-            eq('ladder',ladder)
-            eq('level',level-1) // or 'asc'
+        eq('ladder',ladder)
+        eq('lev',lev-1) // or 'asc'
         }.getAt(0)
-        */
+         */
     }
 
     public String concatString(String original,String append){
@@ -74,18 +77,22 @@ class Level extends EntityBase implements Comparable {
                 vacantPos.setTeam(it.team)
                 vacantPos=it
             }
+            println("pushLoserToEndOfLevel:it:${it}")
         }
         LevelPosition lastPos=fetchLastPosition()
+        println("lastPos:${lastPos}")
         lastPos.setTeam(loser)
         levelposition.each{
-            it.save()
+		if(!it.save()){
+			throw new LadderSystemException("not save!:${it}")	
+		}
         }
-        //queue level should have 1 extract vacant spot holding the loser.
+        //queue lev should have 1 extract vacant spot holding the loser.
         //set the loser team to loserSpot(last position of the queue
-        //            LevelPosition endOfQueue=level.getQueueLoserSpot()
+        //            LevelPosition endOfQueue=lev.getQueueLoserSpot()
         //            endOfQueue.setTeam(loser)
         //            this.setTeam(null)
-        //            level.denseQueue
+        //            lev.denseQueue
     }
 
     public LevelPosition fetchLastPosition(){
@@ -105,11 +112,11 @@ class Level extends EntityBase implements Comparable {
 
     
     public LevelPosition firstAvailablePosition(){
-    	    LevelPosition result=
-    	    levelposition.sort().find{it->
-    	    	    	    	    (null==it.team)
-    	    }
-    	    println("find:${result}")
-    	    return result
+        LevelPosition result=
+        levelposition.sort{it}.find{it->
+            (null==it.team)
+        }
+        println("find:${result}")
+        return result
     }
 }

@@ -1,7 +1,7 @@
 package ladder
 import org.grails.plugins.springsecurity.service.AuthenticateService
 
-class Player {
+class Player extends EntityBase{
     static AuthenticateService authenticateService=new AuthenticateService();
     	
     static hasMany = [authorities: Authority]

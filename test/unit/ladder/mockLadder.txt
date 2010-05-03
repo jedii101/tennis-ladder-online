@@ -1,0 +1,17 @@
+mixLadder:
+<ladder.Ladder@e79eb3 name=mix double levels=[
+<ladder.Level@348ab2 level=2 id=1 version=null ladder=referenced levelposition=[
+<ladder.LevelPosition@1941dc9 pos=2 ladder=referenced team=5first1.5last1
+&5first2.5last2 id=1 version=null level=referenced id=null version=null>, 
+<ladder.LevelPosition@12fa617 pos=3 ladder=referenced team=null id=2 version=null level=referenced id=null version=null>, 
+<ladder.LevelPosition@5284e9 pos=1 ladder=referenced team=4first1.4last1
+&4first2.4last2 id=3 version=null level=referenced id=null version=null>] id=null version=null>, 
+<ladder.Level@6196fc level=1 id=2 version=null ladder=referenced levelposition=[
+<ladder.LevelPosition@ffb301 pos=1 ladder=referenced team=2first1.2last1
+&2first2.2last2 id=4 version=null level=referenced id=null version=null>, 
+<ladder.LevelPosition@1412c18 pos=2 ladder=referenced team=3first1.3last1
+&3first2.3last2 id=5 version=null level=referenced id=null version=null>] id=null version=null>, 
+<ladder.Level@6412da level=0 id=3 version=null ladder=referenced levelposition=[
+<ladder.LevelPosition@11c21b pos=1 ladder=referenced team=1first1.1last1
+&1first2.1last2 id=6 version=null level=referenced id=null version=null>] id=null version=null>] id=1 version=null>
+
