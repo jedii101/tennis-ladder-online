@@ -1,5 +1,5 @@
 package ladder
-class MatchSchedule  extends EntityBase{
+class MatchSchedule  implements EntityBase{
     Team defender
     Team challenger
     int defenderScore

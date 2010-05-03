@@ -1,5 +1,5 @@
 package ladder
-class DefaultReason  extends EntityBase{
+class DefaultReason  implements EntityBase{
     String code
     String comments
 
