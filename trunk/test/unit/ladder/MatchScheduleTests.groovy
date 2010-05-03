@@ -157,10 +157,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L1:P2",d.position.info())
+	assertEquals("L1:P1:1first1.1last1\n&1first2.1last2",d.position.info())
 	    
 	assertEquals("DEFENDER",c.status)
-	assertEquals("L0:P1",c.position.info())
+	assertEquals("L0:P1:2first1.2last1\n&2first2.2last2",c.position.info())
 
     }
 
