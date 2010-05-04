@@ -179,4 +179,15 @@ class LadderServiceTests extends GrailsUnitTestCase {
         assertEquals(2,mixLadder.levels.max().lev)
         assertEquals("L2:P3:null",mixLadder.levels.max().levelposition.max().info())
     }
+    
+    void testFillTeams(){
+	    shouldFailWithCause(LadderSystemException) {
+		    ls.fillTeams(mixLadder)
+
+	    Team.findAllByLadder(mixLadder).each{
+		    println("team after filled:${it} at:${it.fetchPosition()}")
+	    assertNotNull(it.fetchPosition())
+	    }
+	    	    }
+    }
 }

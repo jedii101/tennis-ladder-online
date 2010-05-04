@@ -76,7 +76,8 @@ class LadderService {
 	}
 	
 	public void fillTeams(Ladder ladder){
-		Team.findAllByLadder(ladder)?.each{ladder.addTeam(it)}
+		
+		Team.findAllByLadder(ladder)?.findAll{it->it.fetchPosition()==null}.each{ladder.addTeam(it)}
 	}
 
 }
