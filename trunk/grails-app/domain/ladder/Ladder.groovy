@@ -9,6 +9,10 @@ class Ladder implements EntityBase{
         return name
     }
     
+    public String toString(){
+	    return info()
+    }
+    
 
     
     public void addTeam(Team team){

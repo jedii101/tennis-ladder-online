@@ -74,5 +74,9 @@ class LadderService {
 	    return teams.sort{it.toName()}
 	}
 	}
+	
+	public void fillTeams(Ladder ladder){
+		Team.findAllByLadder(ladder)?.each{ladder.addTeam(it)}
+	}
 
 }

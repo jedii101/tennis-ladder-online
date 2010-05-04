@@ -28,6 +28,11 @@ class Level  implements Comparable, EntityBase {
     public String info(){
         return getName()
     }
+    
+    public String toString(){
+		return info()    
+    }
+    
     public  int minus(Level right) {
         return this.lev-right.lev
     }

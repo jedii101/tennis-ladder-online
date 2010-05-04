@@ -125,6 +125,10 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	assertNull(ls.listTeamsForDefending(t))
 
     }
+    void testListLevelByLadderName(){
+	assertNotNull(LevelPosition.listByLadderName("mix double"))
+    }
+    
     void testTopTeam(){
         def teams=Team.findAll()
         println("teams:${teams}")
