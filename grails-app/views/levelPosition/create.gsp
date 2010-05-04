@@ -1,19 +1,19 @@
 
-
+<%@ page import="ladder.LevelPosition" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Create LevelPosition</title>         
+        <g:set var="entityName" value="${message(code: 'levelPosition.label', default: 'LevelPosition')}" />
+        <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list" id="1">single List</g:link></span>
-            <span class="menuButton"><g:link class="list" action="list" id="2">mix double List</g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body">
-            <h1>Create LevelPosition</h1>
+            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -29,45 +29,54 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="ladder">Ladder:${flash.ladder}</label>
+                                    <label for="team"><g:message code="levelPosition.team.label" default="Team" /></label>
                                 </td>
-
-                            </tr> 
+                                <td valign="top" class="value ${hasErrors(bean: levelPositionInstance, field: 'team', 'errors')}">
+                                    <g:select name="team.id" from="${ladder.Team.list()}" optionKey="id" value="${levelPositionInstance?.team?.id}" noSelection="['null': '']" />
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="level">Level:</label>
+                                    <label for="ladder"><g:message code="levelPosition.ladder.label" default="Ladder" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:levelPositionInstance,field:'level','errors')}">
-                                    <g:select optionKey="id" from="${Level.findAllByLadder(flash.ladder)}" name="level.id" value="${levelPositionInstance?.level?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: levelPositionInstance, field: 'ladder', 'errors')}">
+                                    <g:select name="ladder.id" from="${ladder.Ladder.list()}" optionKey="id" value="${levelPositionInstance?.ladder?.id}"  />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="pos">Pos:</label>
+                                    <label for="level"><g:message code="levelPosition.level.label" default="Level" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:levelPositionInstance,field:'pos','errors')}">
-                                    <input type="text" id="pos" name="pos" value="${fieldValue(bean:levelPositionInstance,field:'pos')}" />
+                                <td valign="top" class="value ${hasErrors(bean: levelPositionInstance, field: 'level', 'errors')}">
+                                    <g:select name="level.id" from="${ladder.Level.list()}" optionKey="id" value="${levelPositionInstance?.level?.id}"  />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="team">Team:</label>
+                                    <label for="pos"><g:message code="levelPosition.pos.label" default="Pos" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:levelPositionInstance,field:'team','errors')}">
-                                    <g:select optionKey="id" from="${Team.findAllByLadder(flash.ladder)}" name="team.id" value="${levelPositionInstance?.team?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: levelPositionInstance, field: 'pos', 'errors')}">
+                                    <g:textField name="pos" value="${fieldValue(bean: levelPositionInstance, field: 'pos')}" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
-
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="name"><g:message code="levelPosition.name.label" default="Name" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: levelPositionInstance, field: 'name', 'errors')}">
+                                    <g:textField name="name" value="${levelPositionInstance?.name}" />
+                                </td>
+                            </tr>
                         
                         </tbody>
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
+                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
             </g:form>
         </div>

@@ -35,6 +35,10 @@ class LevelPosition  implements Comparable, EntityBase {
             order('pos', 'asc') // or 'asc'
         }
     }
+    
+        public static List listByLadderName (String ladderName){
+		return LevelPosition.findAllByLadder(Ladder.findByName(ladderName))?.sort{it}
+    }
     public  List abovePositions (){
         Level levelAbove=levelPosition.level.aboveLevel
         return LevelPosition.withCriteria {
