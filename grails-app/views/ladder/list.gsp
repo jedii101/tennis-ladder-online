@@ -35,7 +35,7 @@
                             <td><g:link action="show" id="${ladderInstance.id}">${fieldValue(bean: ladderInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: ladderInstance, field: "name")}</td>
-                            <td><span class="menuButton"><g:link class="create" action="fill" params="[ladderId:'${ladderInstance.id}']"> fill with not assigned teams</g:link></span></td>
+                            <td><span class="menuButton"><g:link class="create" action="fill" params="[id:ladderInstance.id]"> fill with not assigned teams</g:link></span></td>
                         
                         </tr>
                     </g:each>
