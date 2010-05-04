@@ -3,10 +3,31 @@ package ladder
 class LadderController {
     
     def index = { redirect(action:list,params:params) }
+    def ladderService=new LadderService()
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
+    def fill = {
+            def ladderInstance = Ladder.get( params.id )
+        if(ladderInstance) {
+            try {
+                ladderService.fillTeams(ladderInstance)
+                flash.message = "Ladder ${params.id} filled with teams not assigned"
+                redirect(action:list)
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "Ladder ${params.id} could not be deleted"
+                redirect(action:show,id:params.id)
+            }
+        }
+        else {
+            flash.message = "Ladder not found with id ${params.id}"
+            redirect(action:list)
+        }
+        
+    }
+    
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ ladderInstanceList: Ladder.list( params ), ladderInstanceTotal: Ladder.count() ]

@@ -18,7 +18,10 @@ class Ladder implements EntityBase{
     public void addTeam(Team team){
     //add team to last available level position
     	team.ladder=this
-    	firstAvailable().team=team
+    	LevelPosition lp=firstAvailable()
+	lp.team=team
+	lp.save()
+	println("added team:${lp.info()}")
     }
     
     public LevelPosition firstAvailable(){
