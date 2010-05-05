@@ -146,8 +146,8 @@ class Team  implements Comparable, EntityBase {
         return LevelPosition.findByTeam(this)
     }
 */
-    public static Team fetchTeamByPlayer(Player p){
-	    def team=Team.findByPlayer1(p)?:Team.findByPlayer2(p)
+    public static Team fetchTeamByLadderAndPlayer(Ladder l,Player p){
+	    def team=Team.findByLadderAndPlayer1(l,p)?:Team.findByLadderAndPlayer2(l,p)
 	    return team
     }
 
