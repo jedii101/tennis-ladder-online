@@ -2,8 +2,8 @@ package ladder
 class Level  implements Comparable, EntityBase {
     int lev
     static belongsTo = [ladder:Ladder]
-    //SortedSet levelposition
     static transients = [ 'name','levelTeam' ,'aboveLevel']
+    SortedSet levelposition//make sure it sorted properly
     static hasMany = [levelposition:LevelPosition]
    
     static constraints = {
