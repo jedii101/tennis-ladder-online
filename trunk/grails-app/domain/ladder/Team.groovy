@@ -103,21 +103,21 @@ class Team  implements Comparable, EntityBase {
 
     public String getShortStatus(){
         if("DEFENDER".equals(status)){
-            return "-"
+            return "(-)"
         }
         if("BOTH".equals(status)){
-            return "?"
+            return "(?)"
         }
 	if("VACATION".equals(status)){
-            return "*"
+            return "(*)"
         }
 	if("ON-CHALLENGE".equals(status)){
-            return "!"
+            return "(!)"
         }
-	        if("DISABLED".equals(status)){
-            return "\\"
+	 if("DISABLED".equals(status)){
+            return "(\)"
         }
-        return "+"
+        return "(+)"
     }
     
     public boolean availableForChallenge(){

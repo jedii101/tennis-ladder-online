@@ -32,15 +32,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${flash.singleLevels}" status="i" var="levelInstance">
+                    <g:each sort="true" in="${flash.singleLevels}" status="i" var="levelInstance">
                       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
 
-                        <td><!--${fieldValue(bean:levelInstance, field:'levelTeam')}-->
+                        <td>
                       <nobr>
-                      <g:each in="${levelInstance.levelposition}" status="j" var="posInstance">
-                        <span class="${posInstance.team.status}">
-${fieldValue(bean:posInstance, field:'team')}(${posInstance.team.shortStatus})
+                      <g:each sort="true" in="${levelInstance.levelposition}" status="j" var="posInstance">
+                        <span class="${posInstance.team?.status}">
+${fieldValue(bean:posInstance, field:'team')}${posInstance.team?.shortStatus}
                         </span>
                       </g:each>
                       </nobr>
@@ -76,15 +76,15 @@ ${fieldValue(bean:posInstance, field:'team')}(${posInstance.team.shortStatus})
                       </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${flash.doubleLevels}" status="i" var="levelInstance">
+                    <g:each sort="true" in="${flash.doubleLevels}" status="i" var="levelInstance">
                       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
 
-                        <td><!--${fieldValue(bean:levelInstance, field:'levelTeam')}-->
+                        <td>
                           <nobr>
-                      <g:each in="${levelInstance.levelposition}" status="j" var="posInstance">
-                        <span class="${posInstance.team.status}">
-${fieldValue(bean:posInstance, field:'team')}(${posInstance.team.shortStatus})
+                      <g:each sort="true" in="${levelInstance.levelposition}" status="j" var="posInstance">
+                        <span class="${posInstance.team?.status}">
+${fieldValue(bean:posInstance, field:'team')}${posInstance.team?.shortStatus}
                         </span>
                       </g:each>
                           </nobr>
