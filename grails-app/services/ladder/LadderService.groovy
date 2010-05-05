@@ -11,6 +11,7 @@ class LadderService {
                 LevelPosition lp=new LevelPosition(pos:_pos,ladder:ladder,level:l)
                 l.addToLevelposition(lp)
             }
+	    //l.save()
             ladder.addToLevels(l)
         }
         return ladder
