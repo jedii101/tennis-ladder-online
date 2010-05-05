@@ -1,19 +1,20 @@
 
-
+<%@ page import="ladder.MatchSchedule" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Edit MatchSchedule</title>
+        <g:set var="entityName" value="${message(code: 'matchSchedule.label', default: 'MatchSchedule')}" />
+        <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">MatchSchedule List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New MatchSchedule</g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
+            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body">
-            <h1>Edit MatchSchedule</h1>
+            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -23,99 +24,160 @@
             </div>
             </g:hasErrors>
             <g:form method="post" >
-                <input type="hidden" name="id" value="${matchScheduleInstance?.id}" />
-                <input type="hidden" name="version" value="${matchScheduleInstance?.version}" />
+                <g:hiddenField name="id" value="${matchScheduleInstance?.id}" />
+                <g:hiddenField name="version" value="${matchScheduleInstance?.version}" />
                 <div class="dialog">
                     <table>
                         <tbody>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="planMatchDate">Plan Match Date:</label>
+                                  <label for="defaultWinner"><g:message code="matchSchedule.defaultWinner.label" default="Default Winner" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'planMatchDate','errors')}">
-                                    <g:datePicker name="planMatchDate" value="${matchScheduleInstance?.planMatchDate}" noSelection="['':'']"></g:datePicker>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'defaultWinner', 'errors')}">
+                                    <g:select name="defaultWinner" from="${matchScheduleInstance.constraints.defaultWinner.inList}" value="${matchScheduleInstance?.defaultWinner}" valueMessagePrefix="matchSchedule.defaultWinner" noSelection="['': '']" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="defaultReason">Default Reason:</label>
+                                  <label for="defaultReason"><g:message code="matchSchedule.defaultReason.label" default="Default Reason" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'defaultReason','errors')}">
-                                    <g:select optionKey="id" from="${DefaultReason.list()}" name="defaultReason.id" value="${matchScheduleInstance?.defaultReason?.id}" noSelection="['null':'']"></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'defaultReason', 'errors')}">
+                                    <g:select name="defaultReason.id" from="${ladder.DefaultReason.list()}" optionKey="id" value="${matchScheduleInstance?.defaultReason?.id}" noSelection="['null': '']" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="defaultWinner">Default Winner:</label>
+                                  <label for="status"><g:message code="matchSchedule.status.label" default="Status" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'defaultWinner','errors')}">
-                                    <g:select id="defaultWinner" name="defaultWinner" from="${matchScheduleInstance.constraints.defaultWinner.inList}" value="${matchScheduleInstance.defaultWinner}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'status', 'errors')}">
+                                    <g:select name="status" from="${matchScheduleInstance.constraints.status.inList}" value="${matchScheduleInstance?.status}" valueMessagePrefix="matchSchedule.status"  />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="comments">Comments:</label>
+                                  <label for="comments"><g:message code="matchSchedule.comments.label" default="Comments" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'comments','errors')}">
-                                    <input type="text" id="comments" name="comments" value="${fieldValue(bean:matchScheduleInstance,field:'comments')}"/>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'comments', 'errors')}">
+                                    <g:textField name="comments" maxlength="50" value="${matchScheduleInstance?.comments}" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="challegerScore">Challeger Score:</label>
+                                  <label for="planMatchDate"><g:message code="matchSchedule.planMatchDate.label" default="Plan Match Date" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'challegerScore','errors')}">
-                                    <input type="text" id="challegerScore" name="challegerScore" value="${fieldValue(bean:matchScheduleInstance,field:'challegerScore')}" />
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'planMatchDate', 'errors')}">
+                                    <g:datePicker name="planMatchDate" precision="day" value="${matchScheduleInstance?.planMatchDate}" noSelection="['': '']" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="challenger">Challenger:</label>
+                                  <label for="message"><g:message code="matchSchedule.message.label" default="Message" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'challenger','errors')}">
-                                    <g:select optionKey="id" from="${Team.list()}" name="challenger.id" value="${matchScheduleInstance?.challenger?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'message', 'errors')}">
+                                    
+<ul>
+<g:each in="${matchScheduleInstance?.message?}" var="m">
+    <li><g:link controller="message" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="message" action="create" params="['matchSchedule.id': matchScheduleInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'message.label', default: 'Message')])}</g:link>
+
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="defender">Defender:</label>
+                                  <label for="challengerScore"><g:message code="matchSchedule.challengerScore.label" default="Challenger Score" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'defender','errors')}">
-                                    <g:select optionKey="id" from="${Team.list()}" name="defender.id" value="${matchScheduleInstance?.defender?.id}" ></g:select>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'challengerScore', 'errors')}">
+                                    <g:textField name="challengerScore" value="${fieldValue(bean: matchScheduleInstance, field: 'challengerScore')}" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="defenderScore">Defender Score:</label>
+                                  <label for="ladder"><g:message code="matchSchedule.ladder.label" default="Ladder" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'defenderScore','errors')}">
-                                    <input type="text" id="defenderScore" name="defenderScore" value="${fieldValue(bean:matchScheduleInstance,field:'defenderScore')}" />
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'ladder', 'errors')}">
+                                    <g:select name="ladder.id" from="${ladder.Ladder.list()}" optionKey="id" value="${matchScheduleInstance?.ladder?.id}"  />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="matchDate">Match Date:</label>
+                                  <label for="defenderScore"><g:message code="matchSchedule.defenderScore.label" default="Defender Score" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:matchScheduleInstance,field:'matchDate','errors')}">
-                                    <g:datePicker name="matchDate" value="${matchScheduleInstance?.matchDate}" ></g:datePicker>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'defenderScore', 'errors')}">
+                                    <g:textField name="defenderScore" value="${fieldValue(bean: matchScheduleInstance, field: 'defenderScore')}" />
                                 </td>
-                            </tr> 
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="matchDate"><g:message code="matchSchedule.matchDate.label" default="Match Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'matchDate', 'errors')}">
+                                    <g:datePicker name="matchDate" precision="day" value="${matchScheduleInstance?.matchDate}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="reportBy"><g:message code="matchSchedule.reportBy.label" default="Report By" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'reportBy', 'errors')}">
+                                    <g:select name="reportBy.id" from="${ladder.Player.list()}" optionKey="id" value="${matchScheduleInstance?.reportBy?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="defender"><g:message code="matchSchedule.defender.label" default="Defender" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'defender', 'errors')}">
+                                    <g:select name="defender.id" from="${ladder.Team.list()}" optionKey="id" value="${matchScheduleInstance?.defender?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="challenger"><g:message code="matchSchedule.challenger.label" default="Challenger" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'challenger', 'errors')}">
+                                    <g:select name="challenger.id" from="${ladder.Team.list()}" optionKey="id" value="${matchScheduleInstance?.challenger?.id}"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="loser"><g:message code="matchSchedule.loser.label" default="Loser" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'loser', 'errors')}">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="winner"><g:message code="matchSchedule.winner.label" default="Winner" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'winner', 'errors')}">
+                                    
+                                </td>
+                            </tr>
                         
                         </tbody>
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
+                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </div>
             </g:form>
         </div>

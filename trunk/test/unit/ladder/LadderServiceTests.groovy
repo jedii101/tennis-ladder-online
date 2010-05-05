@@ -70,7 +70,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	def p=Player.findByUserName("2first1_2last1")
 	println("Player:${p}")
 	
-        Team t=Team.fetchTeamByPlayer(p)
+        Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         assertEquals("L1:P1:2first1.2last1\n&2first2.2last2",LevelPosition.findByTeam(t).info())
         assertTrue(t.available())
@@ -80,7 +80,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	 p=Player.findByUserName("5first1_5last1")
 	println("Player:${p}")
 	
-         t=Team.fetchTeamByPlayer(p)
+         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         assertEquals("L2:P2:5first1.5last1\n&5first2.5last2",LevelPosition.findByTeam(t).info())
         assertTrue(t.available())
@@ -99,7 +99,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	def p=Player.findByUserName("1first1_1last1")
 	println("Player:${p}")
 	
-        Team t=Team.fetchTeamByPlayer(p)
+        Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         
         println("listTeamsForDefending:"+ls.listTeamsForDefending(t))
@@ -108,7 +108,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	 p=Player.findByUserName("2first1_2last1")
 	println("Player:${p}")
 	
-         t=Team.fetchTeamByPlayer(p)
+         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         
         println("listTeamsForDefending:"+ls.listTeamsForDefending(t))
@@ -118,7 +118,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	p=Player.findByUserName("5first1_5last1")
 	println("Player:${p}")
 	
-         t=Team.fetchTeamByPlayer(p)
+         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         
         println("listTeamsForDefending:"+ls.listTeamsForDefending(t))
@@ -138,7 +138,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
 	def p=Player.findByUserName("1first1_1last1")
 	println("Player:${p}")
 	
-        Team topTeam=Team.fetchTeamByPlayer(p)
+        Team topTeam=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("topTeam:${topTeam}")
         assertEquals("L0:P1:1first1.1last1\n&1first2.1last2",LevelPosition.findByTeam(topTeam).info())
         assertTrue(topTeam.available())

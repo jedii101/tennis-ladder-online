@@ -78,10 +78,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
 	println("mixLadder:before testGenerateResultMessage:${mixLadder}")
         //top team
         def p=Player.findByUserName("1first1_1last1")
-        Team d=Team.fetchTeamByPlayer(p)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
 	    
         p=Player.findByUserName("3first1_3last1")
-        Team c=Team.fetchTeamByPlayer(p)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
 	    
         println("c:${c}")
         println("d:${d}")
@@ -108,10 +108,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
     void testReportMatch_topTeam_win(){
         println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
         def pd=Player.findByUserName("1first1_1last1")
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 	    
         def pc=Player.findByUserName("3first1_3last1")
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 	    
 	    
         //top team defender win
@@ -128,7 +128,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
 	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",c.fetchPosition().info())
 	
 	pc=Player.findByUserName("2first1_2last1")
-         c=Team.fetchTeamByPlayer(pc)
+         c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 	    
 	    
         //top team defender win
@@ -149,10 +149,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
     void testReportMatch_topTeam_lost(){
 
         def pd=Player.findByUserName("1first1_1last1")
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 	    
         def pc=Player.findByUserName("2first1_2last1")
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 	    
 	    
         //top team defender win
@@ -173,10 +173,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
      void testReportMatch_middleTeam_win(){
         println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
         def pd=Player.findByUserName("3first1_3last1")
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 
         def pc=Player.findByUserName("5first1_5last1")
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 
 
         // team defender win
@@ -197,10 +197,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
     void testReportMatch_middleTeam_lost(){
         println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
         def pd=Player.findByUserName("3first1_3last1")
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 
         def pc=Player.findByUserName("5first1_5last1")
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 
 
         // team defender lost by default
@@ -220,10 +220,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
  void testReportMatch_bottomTeam_lost(){
         println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
         def pd=Player.findByUserName("6first1_6last1")//L2P3
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 
         def pc=Player.findByUserName("9first1_9last1")//L3P3
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 
 
         // team defender win by default
@@ -245,10 +245,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
     void testReportMatch_bottomTeam_win(){
         println("mixLadder:before testReportMatch_topTeam_win:${mixLadder}")
         def pd=Player.findByUserName("6first1_6last1")
-        Team d=Team.fetchTeamByPlayer(pd)
+        Team d=Team.fetchTeamByLadderAndPlayer(mixLadder,pd)
 
         def pc=Player.findByUserName("9first1_9last1")
-        Team c=Team.fetchTeamByPlayer(pc)
+        Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 
 
         // team defender lost by default
