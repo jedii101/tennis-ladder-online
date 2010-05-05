@@ -115,7 +115,7 @@ class Team  implements Comparable, EntityBase {
             return "(!)"
         }
 	 if("DISABLED".equals(status)){
-            return "(\)"
+            return "(\\)"
         }
         return "(+)"
     }

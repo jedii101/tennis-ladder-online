@@ -1,6 +1,7 @@
 package ladder
 class Ladder implements EntityBase{
     String name
+    SortedSet levels//make sure it's sorted properly
     static hasMany = [levels:Level]
     static constraints = {
     }
