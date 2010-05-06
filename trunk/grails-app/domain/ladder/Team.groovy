@@ -89,7 +89,7 @@ class Team  implements Comparable, EntityBase {
     public List listDefendersAbove (){
         //list teams one level above. TODO?status='DEFENDER'
         
-        List positionsAbove=position.abovePositions
+        List positionsAbove=position.abovePositions()
         List defenderList=new ArrayList()
         positionsAbove.each{
             defenderList.add(it.team)

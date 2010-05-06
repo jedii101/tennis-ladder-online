@@ -27,8 +27,9 @@ class MatchScheduleController {
 	     println("new challenge report:")
         def matchScheduleInstance = preFillSchedule()
         println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
-        println("matchScheduleInstance.ladder:${matchScheduleInstance.ladder}")
+        
 	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
+        println("myTeam:${LadderUtils.dumpme(myTeam)}")
         if(!myTeam?.canChallenge()){
             flash.message = "you don't have the right to challenge!"
             redirect(action: "list")
