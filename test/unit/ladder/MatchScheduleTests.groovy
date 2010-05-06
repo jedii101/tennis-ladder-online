@@ -155,7 +155,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         Team c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
 	    
 	    
-        //top team defender win
+        //top team defender lost
         def m=new MatchSchedule(defender:d,challenger:c,
 	    defenderScore:1,challengerScore:8,matchDate:new Date(110,03,20)
 	    ,reportBy:pd,ladder:d.ladder)
