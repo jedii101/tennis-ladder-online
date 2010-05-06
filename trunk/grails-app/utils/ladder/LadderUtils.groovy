@@ -16,6 +16,9 @@ class LadderUtils {
     static List dumpStarted=new Vector();
     static List dumpEnded=new Vector();
     static String dumpme(Object o){
+	    if(o==null){
+		    return "null"
+	    }
     	    String me=null
     	    if(!dumpStarted.contains(o)){
     	    	    dumpStarted.add(o)

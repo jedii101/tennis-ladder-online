@@ -35,7 +35,7 @@ class MatchSchedule  implements EntityBase{
 	)
     }
     public Ladder getLadder(){
-	    return defender?.ladder
+	    return ladder?:(defender?.ladder?:challenger?.ladder)
     }
 
     public Team getWinner(){

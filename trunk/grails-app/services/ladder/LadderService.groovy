@@ -32,7 +32,7 @@ class LadderService {
         //this team must be challenger or both
         if(thisTeam.canChallenge()){
             //get level above this team
-            Level levelAbove=Level.findByLev(thisTeam.fetchPosition().level.lev-1)
+            Level levelAbove=Level.findByLev(thisTeam.position.level.lev-1)
             if(levelAbove==null){
 		return null   
             }
@@ -56,7 +56,7 @@ class LadderService {
         //this team must be challenger or both
         if(thisTeam.available()){
 	 //get level below this team
-            Level levelBelow=Level.findByLev(thisTeam.fetchPosition().level.lev+1)
+            Level levelBelow=Level.findByLev(thisTeam.position.level.lev+1)
             if(levelBelow==null){
 		return null   
             }
@@ -78,7 +78,7 @@ class LadderService {
 	
 	public void fillTeams(Ladder ladder){
 		
-		Team.findAllByLadder(ladder)?.findAll{it->it.fetchPosition()==null}.each{ladder.addTeam(it)}
+		Team.findAllByLadder(ladder)?.findAll{it->it.position==null}.each{ladder.addTeam(it)}
 	}
 
 }

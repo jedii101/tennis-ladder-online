@@ -14,20 +14,30 @@ class MatchScheduleController {
         [matchScheduleInstanceList: MatchSchedule.list(params), matchScheduleInstanceTotal: MatchSchedule.count()]
     }
     private MatchSchedule preFillSchedule(){
-	    def _ladder = Ladder.get( params.id )
+	    def _ladder = Ladder.findByName( params.ladderName )
 	    def _reportPlayer=authenticateService.userDomain()
-	    return new MatchSchedule(ladder:_ladder,reportBy:_reportPlayer)
+
+	    def ms= new MatchSchedule(ladder:_ladder,reportBy:_reportPlayer)
+
+	    return ms
     }
     
 
     def challenging = {
 	     println("new challenge report:")
         def matchScheduleInstance = preFillSchedule()
-	Team myTeam=Team.findByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
-	def defendersAbove=
+        println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+        println("matchScheduleInstance.ladder:${matchScheduleInstance.ladder}")
+	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
+        if(!myTeam?.canChallenge()){
+            flash.message = "you don't have the right to challenge!"
+            redirect(action: "list")
+        }
+        matchScheduleInstance.challenger=myTeam
+	def defendersAbove=myTeam.listDefendersAbove()//defenders drop down
         matchScheduleInstance.properties = params
 	
-        return [matchScheduleInstance: matchScheduleInstance]
+        return [matchScheduleInstance: matchScheduleInstance,defenders:defendersAbove]
     }
 
     def defending = {
