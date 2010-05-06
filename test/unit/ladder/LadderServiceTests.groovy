@@ -67,11 +67,12 @@ class LadderServiceTests extends GrailsUnitTestCase {
     
             mixLadder.addTeam(teams[i])
         }
+	new CascadeDomainSaver().saveCascade(mixLadder)
 	def p=Player.findByUserName("2first1_2last1")
 	println("Player:${p}")
 	
         Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
-        println("t:${t}")
+        println("t:${LadderUtils.dumpme(t)}")
         assertEquals("L1:P1:2first1.2last1\n&2first2.2last2",LevelPosition.findByTeam(t).info())
         assertTrue(t.available())
         println("listTeamsForChallenge:"+ls.listTeamsForChallenge(t))
@@ -83,7 +84,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
          t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
         println("t:${t}")
         assertEquals("L2:P2:5first1.5last1\n&5first2.5last2",LevelPosition.findByTeam(t).info())
-        assertTrue(t.available())
+        assertFalse(t.available())
         println("listTeamsForChallenge:"+ls.listTeamsForChallenge(t))
 	assertEquals("[2first1.2last1\n&2first2.2last2, 3first1.3last1\n&3first2.3last2]",ls.listTeamsForChallenge(t).toString())
     }
@@ -185,9 +186,79 @@ class LadderServiceTests extends GrailsUnitTestCase {
 		    ls.fillTeams(mixLadder)
 
 	    Team.findAllByLadder(mixLadder).each{
-		    println("team after filled:${it} at:${it.fetchPosition()}")
-	    assertNotNull(it.fetchPosition())
+		    println("team after filled:${it} at:${it.position}")
+	    assertNotNull(it.position)
 	    }
 	    	    }
+    }
+    
+    void testAvailable(){
+	    def teams=Team.findAll()
+	for(i in 0..4){
+    
+            mixLadder.addTeam(teams[i])
+        }
+	//middle team
+	def p=Player.findByUserName("2first1_2last1")
+	        Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertTrue(t.available())
+		
+	t.status="CHALLENGER"
+	assertFalse(t.available())
+	
+	t.status="DEFENDER"
+	assertTrue(t.available())
+	//top team
+		 p=Player.findByUserName("1first1_1last1")
+	         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertTrue(t.available())
+		
+		t.status="DEFENDER"
+	assertTrue(t.available())
+	
+	//bottom team
+		 p=Player.findByUserName("4first1_4last1")
+	         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertFalse(t.available())
+		
+	t.status="CHALLENGER"
+	assertFalse(t.available())
+	
+
+    }
+ void testCanChallenge(){
+	    def teams=Team.findAll()
+	for(i in 0..4){
+    
+            mixLadder.addTeam(teams[i])
+        }
+	//middle team
+	def p=Player.findByUserName("2first1_2last1")
+	        Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertTrue(t.canChallenge())
+		
+	t.status="CHALLENGER"
+	assertTrue(t.canChallenge())
+	
+	t.status="DEFENDER"
+	assertFalse(t.canChallenge())
+	
+		t.status="BOTH"
+	assertTrue(t.canChallenge())
+	//top team
+		 p=Player.findByUserName("1first1_1last1")
+	         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertFalse(t.canChallenge())
+		
+		t.status="DEFENDER"
+	assertFalse(t.canChallenge())
+	
+	//bottom team
+		 p=Player.findByUserName("4first1_4last1")
+	         t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+		assertTrue(t.canChallenge())
+		
+	t.status="CHALLENGER"
+	assertTrue(t.canChallenge())
     }
 }

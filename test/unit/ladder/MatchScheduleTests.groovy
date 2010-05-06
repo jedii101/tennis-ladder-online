@@ -122,10 +122,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L0:P1:1first1.1last1\n&1first2.1last2",d.fetchPosition().info())
+	assertEquals("L0:P1:1first1.1last1\n&1first2.1last2",d.position.info())
 	    
 	assertEquals("DEFENDER",c.status)
-	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",c.fetchPosition().info())
+	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",c.position.info())
 	
 	pc=Player.findByUserName("2first1_2last1")
          c=Team.fetchTeamByLadderAndPlayer(mixLadder,pc)
@@ -139,10 +139,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L0:P1:1first1.1last1\n&1first2.1last2",d.fetchPosition().info())
+	assertEquals("L0:P1:1first1.1last1\n&1first2.1last2",d.position.info())
 	    
 	assertEquals("DEFENDER",c.status)
-	assertEquals("L1:P1:2first1.2last1\n&2first2.2last2",c.fetchPosition().info())
+	assertEquals("L1:P1:2first1.2last1\n&2first2.2last2",c.position.info())
         println("mixLadder:after testReportMatch_topTeam_win:${mixLadder}")
     }
 
@@ -163,10 +163,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L1:P1:1first1.1last1\n&1first2.1last2",d.fetchPosition().info())
+	assertEquals("L1:P1:1first1.1last1\n&1first2.1last2",d.position.info())
 	    
 	assertEquals("DEFENDER",c.status)
-	assertEquals("L0:P1:2first1.2last1\n&2first2.2last2",c.fetchPosition().info())
+	assertEquals("L0:P1:2first1.2last1\n&2first2.2last2",c.position.info())
 
     }
 
@@ -187,10 +187,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("CHALLENGER",d.status)
-	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",d.fetchPosition().info())
+	assertEquals("L1:P2:3first1.3last1\n&3first2.3last2",d.position.info())
 
 	assertEquals("DEFENDER",c.status)
-	assertEquals("L2:P2:5first1.5last1\n&5first2.5last2",c.fetchPosition().info())
+	assertEquals("L2:P2:5first1.5last1\n&5first2.5last2",c.position.info())
 
     }
 
@@ -211,10 +211,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L2:P2:3first1.3last1\n&3first2.3last2",d.fetchPosition().info())
+	assertEquals("L2:P2:3first1.3last1\n&3first2.3last2",d.position.info())
 
 	assertEquals("CHALLENGER",c.status)
-	assertEquals("L1:P2:5first1.5last1\n&5first2.5last2",c.fetchPosition().info())
+	assertEquals("L1:P2:5first1.5last1\n&5first2.5last2",c.position.info())
 
     }
  void testReportMatch_bottomTeam_lost(){
@@ -235,10 +235,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("CHALLENGER",d.status)
-	assertEquals("L2:P3:6first1.6last1\n&6first2.6last2",d.fetchPosition().info())
+	assertEquals("L2:P3:6first1.6last1\n&6first2.6last2",d.position.info())
 
 	assertEquals("BOTH",c.status)
-	assertEquals("L3:P3:9first1.9last1\n&9first2.9last2",c.fetchPosition().info())
+	assertEquals("L3:P3:9first1.9last1\n&9first2.9last2",c.position.info())
 
     }
 
@@ -259,10 +259,10 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
 	assertEquals("DEFENDER",d.status)
-	assertEquals("L3:P3:6first1.6last1\n&6first2.6last2",d.fetchPosition().info())
+	assertEquals("L3:P3:6first1.6last1\n&6first2.6last2",d.position.info())
 
 	assertEquals("CHALLENGER",c.status)
-	assertEquals("L2:P3:9first1.9last1\n&9first2.9last2",c.fetchPosition().info())
+	assertEquals("L2:P3:9first1.9last1\n&9first2.9last2",c.position.info())
 
     }
 }

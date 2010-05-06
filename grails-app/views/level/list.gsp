@@ -27,11 +27,18 @@
                   <table>
                     <thead>
                       <tr>
-                        <th>Single Ladder  </th>
+                        <th>Single Ladder  
+		</th>
 
                       </tr>
                     </thead>
                     <tbody>
+		    <tr>
+		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="challenging" params='[ladderName:"singles"]'>report challenge</g:link></span>
+		    </tr>
+		    <tr>
+		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="defending" params='[ladderName:"singles"]'>report defending</g:link></span>
+		    </tr>
                     <g:each sort="true" in="${flash.singleLevels}" status="i" var="levelInstance">
                       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 

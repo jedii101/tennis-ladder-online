@@ -122,7 +122,7 @@
                                     <label for="defender"><g:message code="matchSchedule.defender.label" default="Defender" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: matchScheduleInstance, field: 'defender', 'errors')}">
-                                    <g:select name="defender.id" from="${ladder.Team.list()}" optionKey="id" value="${matchScheduleInstance?.defender?.id}"  />
+                                    <g:select name="defender.id" from="${defenders}" optionKey="id" value="${matchScheduleInstance?.defender?.id}"  />
                                 </td>
                             </tr>
                         

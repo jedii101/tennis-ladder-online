@@ -21,6 +21,8 @@ class Ladder implements EntityBase{
     	team.ladder=this
     	LevelPosition lp=firstAvailable()
 	lp.team=team
+	team.position=lp
+	team.save()
 	lp.save()
 	println("added team:${lp.info()}")
     }

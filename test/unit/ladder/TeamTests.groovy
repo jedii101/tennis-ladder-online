@@ -85,24 +85,7 @@ class TeamTests extends GrailsUnitTestCase {
         team=new Team(status:"DEFENDER")
         assertEquals("DEFENDER",team.status)
     }
-    void testAvailable(){
-	def t=new Team(status:"BOTH")
-	assertTrue(t.available())
-	def t1=new Team(status:"CHALLENGER")
-	assertFalse(t1.available())
-	def t2=new Team(status:"DEFENDER")
-	println("team:${t2.status}:${t2.canChallenge()}")
-	assertTrue(t2.available())
-    }
-    void testCanChallenge(){
-	def t=new Team(status:"BOTH")
-	assertTrue(t.canChallenge())
-	def t1=new Team(status:"CHALLENGER")
-	assertTrue(t1.canChallenge())
-	def t2=new Team(status:"DEFENDER")
-	println("team:${t2.status}:${t2.canChallenge()}")
-	assertFalse(t2.canChallenge())
-    }
+    
     void testValidate() {
   
         def team1 = new Team()
@@ -127,8 +110,5 @@ class TeamTests extends GrailsUnitTestCase {
     }
 
 
-    void testAvailableForChallenge(){
-    	    
 
-    }
 }
