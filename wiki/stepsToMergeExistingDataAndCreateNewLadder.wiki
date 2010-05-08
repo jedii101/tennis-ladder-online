@@ -1,19 +1,19 @@
 =export existing data=
 now I use squirrel to generate the data script from select sql
 ==these tables should be backup:==
-#player
-#message
-#authority
-#defaultReason
-#requestMap
-#authority_people
+  # player
+  # message
+  # authority
+  # defaultReason
+  # requestMap
+  # authority_people
 
 *save the data script*
 
 
 =create new ladder=
-#delete all existing database file, i.e: rm D:\data\TennisLadderOnline\ladderDev.*
-#create ladder in BootStrap:
+  # delete all existing database file, i.e: rm D:\data\TennisLadderOnline\ladderDev.*
+  # create ladder in BootStrap:
 {{{
 
          // create ladders
@@ -24,6 +24,5 @@ now I use squirrel to generate the data script from select sql
          singleLadder.save()
          //**///
 }}}
-#after the first startup successfully, comment out the above code, remember do grails clean before start the server again.
-
-#import the data script from your backup.
+  # after the first startup successfully, comment out the above code, remember do grails clean before start the server again.
+  # import the data script from your backup.
