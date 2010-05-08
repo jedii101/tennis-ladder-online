@@ -39,7 +39,7 @@ class LevelPosition  implements Comparable, EntityBase {
         public static List listByLadderName (String ladderName){
 		return LevelPosition.findAllByLadder(Ladder.findByName(ladderName))?.sort{it}
     }
-    public  List abovePositions (){
+    public  SortedSet abovePositions (){
         Level levelAbove=level.aboveLevel()
 	return levelAbove?.levelposition
 	/*
@@ -53,6 +53,7 @@ class LevelPosition  implements Comparable, EntityBase {
     public boolean atLadderTop(){
         return level.lev==0
     }
+    /*
     public static LevelPosition firstAvailable(){
 	    def result=
         LevelPosition.findAll().sort{it}.find{it->
@@ -60,6 +61,7 @@ class LevelPosition  implements Comparable, EntityBase {
         }
 	return result
     }
+    */
     
     public boolean inBottomQueue(){
 	    /*
@@ -71,7 +73,7 @@ class LevelPosition  implements Comparable, EntityBase {
         println("maxLel.lev:${maxLev.lev}")
         return (level.lev==maxLevValue)
 	*/
-	return level.lev==(LevelPosition.firstAvailable().level.lev)
+	return level.lev==(ladder.firstAvailable().level.lev)
     }
     public void posLoserTeam(Team loser){
         //if(isInBottomQueue()){

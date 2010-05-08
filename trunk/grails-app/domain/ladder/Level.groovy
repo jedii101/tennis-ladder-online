@@ -58,7 +58,9 @@ class Level  implements Comparable, EntityBase {
     }
 
     public Level aboveLevel(){
-        return Level.findWhere([lev:(this.lev-1)])
+        def aboveLevel= Level.findByLadderAndLev(this.ladder,(this.lev-1))
+	println("aboveLevel:${LadderUtils.dumpme(aboveLevel)}")
+	return aboveLevel
         /*
         return withCriteria {
         eq('ladder',ladder)

@@ -54,7 +54,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         def maxLev=Level.findAll().max()
         println("maxLel:-setup${maxLev}")
 	
-	def firstAvailableLP=LevelPosition.firstAvailable()
+	def firstAvailableLP=mixLadder.firstAvailable()
 	println("firstAvaialbleLP:${firstAvailableLP}")
     }
 
