@@ -69,7 +69,7 @@ class Team  implements Comparable, EntityBase {
         if(winnerPosition.atLadderTop()||loserPosition.atLadderTop()){
             this.status="DEFENDER"
         }
-        if(loserPosition.inBottomQueue()||loserPosition.inBottomQueue()){
+        if(winnerPosition.inBottomQueue()||loserPosition.inBottomQueue()){
             loser.status="BOTH"
         }
 	//this.save()
@@ -89,10 +89,13 @@ class Team  implements Comparable, EntityBase {
     public List listDefendersAbove (){
         //list teams one level above. TODO?status='DEFENDER'
         
-        List positionsAbove=position.abovePositions()
+        SortedSet positionsAbove=position.abovePositions()
+	println("positionsAbove:${LadderUtils.dumpme(positionsAbove)}")
         List defenderList=new ArrayList()
         positionsAbove.each{
+		if(it.team?.available()){
             defenderList.add(it.team)
+		}
         }
         return defenderList
     }

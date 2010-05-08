@@ -2,6 +2,7 @@ package ladder
 
 class MatchScheduleController {
 	def authenticateService
+        def matchService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -36,6 +37,7 @@ class MatchScheduleController {
         }
         matchScheduleInstance.challenger=myTeam
 	def defendersAbove=myTeam.listDefendersAbove()//defenders drop down
+         println("defendersAbove:${defendersAbove}")
         matchScheduleInstance.properties = params
 	
         return [matchScheduleInstance: matchScheduleInstance,defenders:defendersAbove]
@@ -53,14 +55,26 @@ class MatchScheduleController {
         return [matchScheduleInstance: matchScheduleInstance]
     }
 
-    def save = {
+    def save={
+        saveMode("create")
+    }
+
+    def saveChallenge={
+        saveMode("challenging")
+    }
+
+    def saveDefending={
+        saveMode("defending")
+    }
+    private saveMode(String mode)  {
+        println("save:${LadderUtils.dumpme(params)}")
         def matchScheduleInstance = new MatchSchedule(params)
-        if (matchScheduleInstance.save(flush: true)) {
+        if (matchService.reportResults(matchScheduleInstance)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'matchSchedule.label', default: 'MatchSchedule'), matchScheduleInstance.id])}"
             redirect(action: "show", id: matchScheduleInstance.id)
         }
         else {
-            render(view: "create", model: [matchScheduleInstance: matchScheduleInstance])
+            render(view: "${mode}", model: [matchScheduleInstance: matchScheduleInstance])
         }
     }
 
