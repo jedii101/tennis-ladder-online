@@ -56,7 +56,12 @@ class Level  implements Comparable, EntityBase {
         //levelTeam=levelposition.each(concatString(levelTeam,it.team))
         return levelTeam;
     }
-
+    public Level belowLevel(){
+        def belowLevel= Level.findByLadderAndLev(this.ladder,(this.lev+1))
+	println("belowLevel:${LadderUtils.dumpme(belowLevel)}")
+	return belowLevel
+    }
+    
     public Level aboveLevel(){
         def aboveLevel= Level.findByLadderAndLev(this.ladder,(this.lev-1))
 	println("aboveLevel:${LadderUtils.dumpme(aboveLevel)}")

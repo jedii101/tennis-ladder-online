@@ -33,12 +33,18 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <g:if test="${true==singleChallenge}">
+
 		    <tr>
 		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="challenging" params='[ladderName:"singles"]'>report challenge</g:link></span>
 		    </tr>
+                    </g:if>
+                    <g:if test="${singleDefending}">
+
 		    <tr>
 		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="defending" params='[ladderName:"singles"]'>report defending</g:link></span>
 		    </tr>
+                    </g:if>
                     <g:each sort="true" in="${flash.singleLevels}" status="i" var="levelInstance">
                       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
@@ -65,7 +71,7 @@ ${fieldValue(bean:posInstance, field:'team')}${posInstance.team?.shortStatus}
                 <div class="paginateButtons">
                   <g:paginate total="${flash.singleLevels.size}" />
                 </div>
-
+<br><br>
                 <div class="list">
                   <table>
                     <thead>
@@ -83,6 +89,16 @@ ${fieldValue(bean:posInstance, field:'team')}${posInstance.team?.shortStatus}
                       </tr>
                     </thead>
                     <tbody>
+                       <g:if test="${mixChallenge}">
+                      		    <tr>
+		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="challenging" params='[ladderName:"mix doubles"]'>report challenge</g:link></span>
+		    </tr>
+                       </g:if>
+                    <g:if test="${mixDefending}">
+		    <tr>
+		    <span class="menuButton"><g:link controller="matchSchedule" class="create" action="defending" params='[ladderName:"mix doubles"]'>report defending</g:link></span>
+		    </tr>
+                    </g:if>
                     <g:each sort="true" in="${flash.doubleLevels}" status="i" var="levelInstance">
                       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 

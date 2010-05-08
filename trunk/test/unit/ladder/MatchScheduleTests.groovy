@@ -16,7 +16,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         def testLevelPosition = []
         mockDomain(LevelPosition, testLevelPosition)
         ls=new LadderService()
-        mixLadder=ls.createLadder("mix double",1,2,3,10)
+        mixLadder=ls.createLadder("mix double",1,2,3,4,10)
         //replace mixLadder.save()
         new CascadeDomainSaver().saveCascade(mixLadder)
 	 
@@ -258,11 +258,132 @@ class MatchScheduleTests extends GrailsUnitTestCase {
         println("m:${m}")
         matchService.reportResults(m)
         println("ladder:${Ladder.findAll()}")
-	assertEquals("DEFENDER",d.status)
+	assertEquals("BOTH",d.status)
 	assertEquals("L3:P3:6first1.6last1\n&6first2.6last2",d.position.info())
 
 	assertEquals("CHALLENGER",c.status)
 	assertEquals("L2:P3:9first1.9last1\n&9first2.9last2",c.position.info())
 
     }
+    
+     void testListDefendersAbove(){
+	     //top team
+	             def p=Player.findByUserName("1first1_1last1")
+		     Team t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals(0,t.listDefendersAbove().size())
+	     
+	     //2nd level
+	     p=Player.findByUserName("2first1_2last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[1first1.1last1\n&1first2.1last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("3first1_3last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[1first1.1last1\n&1first2.1last2]",t.listDefendersAbove().toString())
+	     
+	     //3rd level
+	     p=Player.findByUserName("4first1_4last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[2first1.2last1\n&2first2.2last2, 3first1.3last1\n&3first2.3last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("5first1_5last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[2first1.2last1\n&2first2.2last2, 3first1.3last1\n&3first2.3last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("6first1_6last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[2first1.2last1\n&2first2.2last2, 3first1.3last1\n&3first2.3last2]",t.listDefendersAbove().toString())	     
+	     
+	     //4th level
+	     p=Player.findByUserName("7first1_7last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 5first1.5last1\n&5first2.5last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("8first1_8last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 5first1.5last1\n&5first2.5last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("9first1_9last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 5first1.5last1\n&5first2.5last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+		     
+					     
+     }
+     
+     void testValidteScore(){
+	     def ms=new MatchSchedule(defenderScore:8,challengerScore:5)
+	      //println("testValidte:${LadderUtils.dumpme(ms)}")
+	     assertEquals(true,ms.validateScore())
+	     
+	     ms=new MatchSchedule(defenderScore:8,challengerScore:8,defaultReason:"abc",defaultWinner:"DEFENDER")
+	     assertEquals(true,ms.validateScore())
+	     
+	     ms=new MatchSchedule(defenderScore:0,challengerScore:0)
+	     assertEquals(false,ms.validateScore())
+	     
+	     ms=new MatchSchedule(defenderScore:8,challengerScore:8)
+	     assertEquals(false,ms.validateScore())
+	     
+	     ms=new MatchSchedule(defenderScore:8,challengerScore:8,defaultReason:"abc")
+	     assertEquals(false,ms.validateScore())
+	     
+	    ms=new MatchSchedule(defenderScore:5,challengerScore:8,defaultWinner:"DEFENDER")
+	     assertEquals(false,ms.validateScore())
+     }
+     /**
+     void testWinOver(){
+	     //top team
+	             def p=Player.findByUserName("1first1_1last1")
+		     Team t1=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals(0,t.listDefendersAbove().size())
+	     
+	     //2nd level
+	     p=Player.findByUserName("2first1_2last1")
+	     Team t2=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     t.2status="BOTH"
+	     t2.save()
+	     assertEquals("[1first1.1last1\n&1first2.1last2]",t2.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("3first1_3last1")
+	     Team t3=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     t3.status="CHALLENGER"
+	     t3.save()
+	     assertEquals("[1first1.1last1\n&1first2.1last2]",t3.listDefendersAbove().toString())
+	     
+	     t1.winOver(t2)
+	     assertEquals(t1.position)
+	     
+	     //3rd level
+	     p=Player.findByUserName("4first1_4last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[2first1.2last1\n&2first2.2last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("5first1_5last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     t.status="CHALLENGER"
+	     t.save()
+	     assertEquals("[2first1.2last1\n&2first2.2last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("6first1_6last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     t.status="DEFENDER"
+	     t.save()
+	     assertEquals("[2first1.2last1\n&2first2.2last2]",t.listDefendersAbove().toString())	     
+	     
+	     //4th level
+	     p=Player.findByUserName("7first1_7last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("8first1_8last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+	     
+	     p=Player.findByUserName("9first1_9last1")
+	     t=Team.fetchTeamByLadderAndPlayer(mixLadder,p)
+	     assertEquals("[4first1.4last1\n&4first2.4last2, 6first1.6last1\n&6first2.6last2]",t.listDefendersAbove().toString())
+		     
+					     
+     }
+     **/
 }
