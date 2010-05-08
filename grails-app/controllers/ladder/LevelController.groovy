@@ -1,17 +1,35 @@
 package ladder
 
 class LevelController {
-    
+    def authenticateService
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
+        def me=authenticateService.userDomain()
+        def myMixTeam=Team.fetchTeamByLadderAndPlayer(Ladder.findByName("mix doubles"),me)
+        def mySingleTeam=Team.fetchTeamByLadderAndPlayer(Ladder.findByName("singles"),me)
+
+        def mixChallenge=(myMixTeam?.canChallenge())?:false
+        def mixDefending=(myMixTeam?.available())?:false
+
+        def singleChallenge=(mySingleTeam?.canChallenge())?:false
+        def singleDefending=(mySingleTeam?.available())?:false
+        println("mySingleTeam:${LadderUtils.dumpme(mySingleTeam)}")
+        println("singleDefending:${singleDefending}")
+
+        println("myMixTeam:${LadderUtils.dumpme(myMixTeam)}")
+        println("mixDefending:${mixDefending}")
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+
+        println("level list:params:${LadderUtils.dumpme(params)}")
         //[ levelInstanceList: Level.list( params ), levelInstanceTotal: Level.count() ]
-        flash.singleLevels=Level.showLevelForLadder(Ladder.get(1))
-        flash.doubleLevels=Level.showLevelForLadder(Ladder.get(2))
+        flash.singleLevels=Level.showLevelForLadder(Ladder.findByName("singles"))
+        flash.doubleLevels=Level.showLevelForLadder(Ladder.findByName("mix doubles"))
+        return [ mixChallenge : mixChallenge, mixDefending:mixDefending,
+            singleChallenge:singleChallenge,singleDefending:singleDefending]
     }
 
     def show = {

@@ -8,7 +8,7 @@ class Team  implements Comparable, EntityBase {
     
     static transients = [ 'defenders','shortStatus' ]
     Ladder ladder
-    LevelPosition position
+    static belongsTo=[position:LevelPosition]
     static constraints = {
         status(inList:["DEFENDER", "CHALLENGER","BOTH","ON-CHALLENGE","DISABLED","VACATION"] )
 //        lastMatchSchedule(nullable:true)
@@ -85,7 +85,19 @@ class Team  implements Comparable, EntityBase {
         return toName()
         //+"("+status+")"
     }
-
+    public List listChallengersBelow (){
+        
+        SortedSet positionsBelow=position.belowPositions()
+	println("positionsBelow:${LadderUtils.dumpme(positionsAbove)}")
+        List challengers=new ArrayList()
+        positionsAbove.each{
+		if(it.team?.canChallenge()){
+            challengers.add(it.team)
+		}
+        }
+        return challengers.sort{it.toName()} 
+    }
+    
     public List listDefendersAbove (){
         //list teams one level above. TODO?status='DEFENDER'
         
@@ -97,7 +109,7 @@ class Team  implements Comparable, EntityBase {
             defenderList.add(it.team)
 		}
         }
-        return defenderList
+        return defenderList.sort{it.toName()}
     }
 
     /**
@@ -129,7 +141,7 @@ class Team  implements Comparable, EntityBase {
         }
         return "(+)"
     }
-    
+    /**
     public boolean availableForChallenge(){
 
     	    if ("DEFENDER".equals(status)||"BOTH".equals(status)){
@@ -143,13 +155,15 @@ class Team  implements Comparable, EntityBase {
     	    return false
 	  
     }
+    **/
     
     public boolean canChallenge(){
-	    return (status==~/CHALLENGER|BOTH/)&&(!position.atLadderTop())
+	    return (status==~/CHALLENGER|BOTH/)&&(!position?.atLadderTop())
     }
     
     public boolean available(){
-	    return (status==~/DEFENDER|BOTH/)&&(!position.inBottomQueue())
+	    println("available:${LadderUtils.dumpme(this)}")
+	    return (status==~/DEFENDER|BOTH/)&&(!position?.inBottomQueue())
     }
 /*
     public LevelPosition getPosition(){

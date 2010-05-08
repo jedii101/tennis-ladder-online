@@ -43,10 +43,23 @@ class MatchScheduleController {
         return [matchScheduleInstance: matchScheduleInstance,defenders:defendersAbove]
     }
 
-    def defending = {
-        def matchScheduleInstance = new MatchSchedule()
+def defending = {
+	     println("new defending report:")
+        def matchScheduleInstance = preFillSchedule()
+        println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+
+	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
+        println("myTeam:${LadderUtils.dumpme(myTeam)}")
+        if(!myTeam?.available()){
+            flash.message = "you are not supposed to defend!"
+            redirect(controller:"level",action: "list")
+        }
+        matchScheduleInstance.defender=myTeam
+	def challengerBelow=myTeam.listChallengersBelow()//defenders drop down
+         println("challengerBelow:${challengerBelow}")
         matchScheduleInstance.properties = params
-        return [matchScheduleInstance: matchScheduleInstance]
+
+        return [matchScheduleInstance: matchScheduleInstance,challengers:challengerBelow]
     }
 
     def create = {
@@ -69,9 +82,18 @@ class MatchScheduleController {
     private saveMode(String mode)  {
         println("save:${LadderUtils.dumpme(params)}")
         def matchScheduleInstance = new MatchSchedule(params)
+        if(!matchScheduleInstance.validate()){
+            flash.message = "System can not decide the winner, please verify the score or default"
+            render(view: "${mode}", model: [matchScheduleInstance: matchScheduleInstance])
+        }
+
         if (matchService.reportResults(matchScheduleInstance)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'matchSchedule.label', default: 'MatchSchedule'), matchScheduleInstance.id])}"
+            if("create".equals(mode)){
             redirect(action: "show", id: matchScheduleInstance.id)
+            }else{
+                redirect(controller:'level',action:'list')
+            }
         }
         else {
             render(view: "${mode}", model: [matchScheduleInstance: matchScheduleInstance])

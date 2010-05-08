@@ -64,8 +64,13 @@ class MatchSchedule  implements EntityBase{
     }
     public String generateResultMessage(){
         String result= "Match Result:${getWinner()} defeated ${getLoser()} ${generateScore()}".replaceAll("\n","")
-	
-	    
+
+    }
+    
+    public boolean validateScore(){
+	    //validate score /default to decide winnerxx
+	    //println("matchSchedule:${LadderUtils.dumpme(this)}")
+	    defaultReason==null?(defenderScore!=challengerScore&&defaultWinner==null):(defaultWinner!=null)
     }
 
 
