@@ -47,14 +47,16 @@ class PlayerController {
 
         def playerInstance = Player.get(params.id)
         if (playerInstance) {
-            def authPrincipal = authenticateService.principal()
+            def me=authenticateService.userDomain()
+            println("delete player:${playerInstance}")
             //avoid self-delete if the logged-in user is an admin
-            if (!(authPrincipal instanceof String) && authPrincipal.userName == playerInstance.userName) {
+            if (me.userName == playerInstance.userName) {
                 flash.message = "You can not delete yourself, please login as another admin and try again"
             }
             else {
                 //first, delete this playerInstance from People_Authorities table.
                 Authority.findAll().each { it.removeFromPeople(playerInstance) }
+                Message.findAllByCreateBy(playerInstance).each{it.delete()}
                 playerInstance.delete()
                 flash.message = "Player $params.id deleted."
             }
