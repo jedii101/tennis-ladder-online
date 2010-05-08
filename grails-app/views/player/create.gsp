@@ -1,4 +1,5 @@
 
+<%@ page import="ladder.*" %>
 
 <html>
     <head>
