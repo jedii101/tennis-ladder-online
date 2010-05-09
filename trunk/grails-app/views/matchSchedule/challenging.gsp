@@ -19,13 +19,18 @@
         <g:renderErrors bean="${matchScheduleInstance}" as="list" />
       </div>
     </g:hasErrors>
-    <g:form action="saveChallenge" method="post" >
+    <g:if test="${flash.invalidToken}">
+      <div class="errors">
+        Don't click the button twice!This page is staled, please try again.
+      </div>
+    </g:if>
+    <g:form action="saveChallenge" method="post" useToken="true">
       <g:hiddenField name="challenger.id" value="${matchScheduleInstance?.challenger?.id}" />
       <g:hiddenField name="status" value="${matchScheduleInstance?.status}" />
       <g:hiddenField name="reportBy.id" value="${matchScheduleInstance?.reportBy?.id}" />
       <g:hiddenField name="ladder.id" value="${matchScheduleInstance?.ladder?.id}" />
       <div class="dialog">
-        
+
         <table>
           <tbody>
 
@@ -104,11 +109,11 @@
           <g:textField name="comments" maxlength="50" value="${matchScheduleInstance?.comments}" />
           </td>
           </tr>
-         <tr class="prop">
-           <td valign="top" class="name">
-             <hr size = 5 width=100% align="left" color="red">
-            Only fill in following when default happens!
-           </td>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <hr size = 5 width=100% align="left" color="red">
+              Only fill in following when default happens!
+            </td>
           </tr>
           <tr class="prop">
             <td valign="top" class="name">

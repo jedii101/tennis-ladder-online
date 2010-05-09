@@ -19,7 +19,7 @@
         <g:renderErrors bean="${matchScheduleInstance}" as="list" />
       </div>
     </g:hasErrors>
-    <g:form action="saveDefending" method="post" >
+    <g:form action="saveDefending" method="post" useToken="true" >
       <g:hiddenField name="defender.id" value="${matchScheduleInstance?.defender?.id}" />
       <g:hiddenField name="status" value="${matchScheduleInstance?.status}" />
       <g:hiddenField name="reportBy.id" value="${matchScheduleInstance?.reportBy?.id}" />

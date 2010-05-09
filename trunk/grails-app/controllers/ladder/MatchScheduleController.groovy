@@ -1,8 +1,8 @@
 package ladder
 
 class MatchScheduleController {
-	def authenticateService
-        def matchService
+    def authenticateService
+    def matchService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -15,17 +15,17 @@ class MatchScheduleController {
         [matchScheduleInstanceList: MatchSchedule.list(params), matchScheduleInstanceTotal: MatchSchedule.count()]
     }
     private MatchSchedule preFillSchedule(){
-	    def _ladder = Ladder.findByName( params.ladderName )
-	    def _reportPlayer=authenticateService.userDomain()
+        def _ladder = Ladder.findByName( params.ladderName )
+        def _reportPlayer=authenticateService.userDomain()
 
-	    def ms= new MatchSchedule(ladder:_ladder,reportBy:_reportPlayer)
+        def ms= new MatchSchedule(ladder:_ladder,reportBy:_reportPlayer)
 
-	    return ms
+        return ms
     }
     
 
     def challenging = {
-	     println("new challenge report:")
+        println("new challenge report:")
         def matchScheduleInstance = preFillSchedule()
         println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
         
@@ -37,14 +37,14 @@ class MatchScheduleController {
         }
         matchScheduleInstance.challenger=myTeam
 	def defendersAbove=myTeam.listDefendersAbove()//defenders drop down
-         println("defendersAbove:${defendersAbove}")
+        println("defendersAbove:${defendersAbove}")
         matchScheduleInstance.properties = params
 	
         return [matchScheduleInstance: matchScheduleInstance,defenders:defendersAbove]
     }
 
-def defending = {
-	     println("new defending report:")
+    def defending = {
+        println("new defending report:")
         def matchScheduleInstance = preFillSchedule()
         println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
 
@@ -56,7 +56,7 @@ def defending = {
         }
         matchScheduleInstance.defender=myTeam
 	def challengerBelow=myTeam.listChallengersBelow()//defenders drop down
-         println("challengerBelow:${challengerBelow}")
+        println("challengerBelow:${challengerBelow}")
         matchScheduleInstance.properties = params
 
         return [matchScheduleInstance: matchScheduleInstance,challengers:challengerBelow]
@@ -73,18 +73,36 @@ def defending = {
     }
 
     def saveChallenge={
-        saveMode("challenging")
+        withForm {
+            // good request
+            saveMode("challenging")
+        }.invalidToken {
+             println("invalidToken!!")
+            flash.error = "the page staled, please try again."
+            redirect(controller:'level',action:'list')
+            return
+        }
+        
     }
 
     def saveDefending={
-        saveMode("defending")
+                withForm {
+            // good request
+            saveMode("defending")
+        }.invalidToken {
+             println("invalidToken!!")
+            flash.error = "the page staled, please try again."
+            redirect(controller:'level',action:'list')
+            return
+        }
+        
     }
     private saveMode(String mode)  {
         println("save:${LadderUtils.dumpme(params)};mode:${mode}")
         def matchScheduleInstance = new MatchSchedule(params)
         if(!matchScheduleInstance.validateScore()){
             println("failed score validation!")
-            flash.error = "System can not decide the winner, please verify the score or default"
+            flash.error = "System can not decide the winner, make sure score or default were set properly, please try again."
             redirect(controller:'level',action:'list')
             return
         }
