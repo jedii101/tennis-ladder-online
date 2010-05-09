@@ -324,6 +324,9 @@ class MatchScheduleTests extends GrailsUnitTestCase {
 	     ms=new MatchSchedule(defenderScore:8,challengerScore:8)
 	     assertEquals(false,ms.validateScore())
 	     
+	     ms=new MatchSchedule()
+	     assertEquals(false,ms.validateScore())
+	     
 	     ms=new MatchSchedule(defenderScore:8,challengerScore:8,defaultReason:"abc")
 	     assertEquals(false,ms.validateScore())
 	     

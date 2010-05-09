@@ -18,6 +18,9 @@
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
+    <g:if test="${flash.error}">
+      <div class="errors">${flash.error}</div>
+    </g:if>
     <div class="list">
       <th width="250"><br> Teams/players in:<br>
         <b class="CHALLENGER">Red(+)</b> are challengers;
