@@ -9,17 +9,17 @@
 </head>
 <body>
 
+    <g:ifAnyGranted role="ROLE_ADMIN">
   <div class="nav">
 
 
-    <span class="menuButton"><a  href="${createLink(uri: '/player/list')}">Player List</a></span>
 
-    <g:ifAnyGranted role="ROLE_ADMIN">
       <span class="menuButton"><a class="home" href="${createLink(uri: '/secure/index.gsp')}">Home</a></span>
       <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-    </g:ifAnyGranted>
+
 
   </div>
+          </g:ifAnyGranted>
   <div class="body">
     <h1><g:message code="default.list.label" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
@@ -39,9 +39,9 @@
           <th><g:message code="message.schedule.label" default="Schedule" /></th>
         </g:ifAnyGranted>
         <th><g:message code="message.createBy.name" default="From" /></th>
-        <g:sortableColumn property="message" title="${message(code: 'message.message.label', default: 'Message')}" />
+        <g:message code="message.message" default="Message" />
 
-        <g:sortableColumn property="created" title="${message(code: 'message.created.label', default: 'Created')}" />
+        <g:message code="message.createBy.name" default="Created" />
 
         </tr>
         </thead>
