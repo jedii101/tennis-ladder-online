@@ -18,7 +18,7 @@ class RequestmapController {
 
 	def list = {
 		if (!params.max) {
-			params.max = 10
+			params.max = 100
 		}
 		[requestmapList: Requestmap.list(params)]
 	}
