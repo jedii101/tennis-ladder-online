@@ -25,8 +25,8 @@
         <span class="menuButton"><a class="home" href="${createLink(uri: '/level/list')}">Ladder Standing</a></span>
         <span class="menuButton"><a class="list"   href="${createLink(uri: '/player/list')}">Player List</a></span>
         <span class="menuButton"><a class="list"   href="${createLink(uri: '/message/list')}">Recend Messages</a></span>
-        <span class="menuButton"><a class="rules"   href="${createLink(uri: '/info/rules.html')}">Rules</a></span>
-        <span class="menuButton"><a class="help"   href="${createLink(uri: '/info/help')}">Help</a></span>
+        <span class="menuButton"><a class="rules"   href="${createLink(uri: '/rules.html')}">Rules</a></span>
+        <span class="menuButton"><a class="help"   href="${createLink(uri: '/help.html')}">Help</a></span>
 
       </div>
     </g:ifAnyGranted>
