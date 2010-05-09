@@ -80,17 +80,19 @@ def defending = {
         saveMode("defending")
     }
     private saveMode(String mode)  {
-        println("save:${LadderUtils.dumpme(params)}")
+        println("save:${LadderUtils.dumpme(params)};mode:${mode}")
         def matchScheduleInstance = new MatchSchedule(params)
-        if(!matchScheduleInstance.validate()){
-            flash.message = "System can not decide the winner, please verify the score or default"
-            render(view: "${mode}", model: [matchScheduleInstance: matchScheduleInstance])
+        if(!matchScheduleInstance.validateScore()){
+            println("failed score validation!")
+            flash.error = "System can not decide the winner, please verify the score or default"
+            redirect(controller:'level',action:'list')
+            return
         }
 
         if (matchService.reportResults(matchScheduleInstance)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'matchSchedule.label', default: 'MatchSchedule'), matchScheduleInstance.id])}"
             if("create".equals(mode)){
-            redirect(action: "show", id: matchScheduleInstance.id)
+                redirect(action: "show", id: matchScheduleInstance.id)
             }else{
                 redirect(controller:'level',action:'list')
             }
