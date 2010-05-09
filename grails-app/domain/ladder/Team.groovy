@@ -88,9 +88,9 @@ class Team  implements Comparable, EntityBase {
     public List listChallengersBelow (){
         
         SortedSet positionsBelow=position.belowPositions()
-	println("positionsBelow:${LadderUtils.dumpme(positionsAbove)}")
+	println("positionsBelow:${LadderUtils.dumpme(positionsBelow)}")
         List challengers=new ArrayList()
-        positionsAbove.each{
+        positionsBelow.each{
 		if(it.team?.canChallenge()){
             challengers.add(it.team)
 		}
