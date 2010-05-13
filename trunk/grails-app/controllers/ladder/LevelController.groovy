@@ -17,14 +17,14 @@ class LevelController {
 
         def singleChallenge=(mySingleTeam?.canChallenge())?:false
         def singleDefending=(mySingleTeam?.available())?:false
-        println("mySingleTeam:${LadderUtils.dumpme(mySingleTeam)}")
-        println("singleDefending:${singleDefending}")
+        log.info("mySingleTeam:${LadderUtils.dumpme(mySingleTeam)}")
+        log.info("singleDefending:${singleDefending}")
 
-        println("myMixTeam:${LadderUtils.dumpme(myMixTeam)}")
-        println("mixDefending:${mixDefending}")
+        log.info("myMixTeam:${LadderUtils.dumpme(myMixTeam)}")
+        log.info("mixDefending:${mixDefending}")
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
 
-        println("level list:params:${LadderUtils.dumpme(params)}")
+        log.info("level list:params:${LadderUtils.dumpme(params)}")
         //[ levelInstanceList: Level.list( params ), levelInstanceTotal: Level.count() ]
         flash.singleLevels=Level.showLevelForLadder(Ladder.findByName("singles"))
         flash.doubleLevels=Level.showLevelForLadder(Ladder.findByName("mix doubles"))

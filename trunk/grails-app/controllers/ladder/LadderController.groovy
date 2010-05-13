@@ -9,7 +9,7 @@ class LadderController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def fill = {
-	    println("filling ladder:${params.id}")
+	    log.info("filling ladder:${params.id}")
             def ladderInstance = Ladder.get( params.id )
         if(ladderInstance) {
             try {

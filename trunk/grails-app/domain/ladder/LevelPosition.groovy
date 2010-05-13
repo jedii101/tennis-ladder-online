@@ -75,10 +75,10 @@ class LevelPosition  implements Comparable, EntityBase {
             throw new LadderSystemException("level is not created!")
         }
         int maxLevValue=maxLev.lev
-        println("maxLel.lev:${maxLev.lev}")
+        log.info("maxLel.lev:${maxLev.lev}")
         return (level.lev==maxLevValue)
 	*/
-	println("lp:${info()}in botton?first available leve:${ladder.firstAvailable().level.lev}")
+	log.info("lp:${info()}in botton?first available leve:${ladder.firstAvailable().level.lev}")
 	return level.lev==(ladder.firstAvailable().level.lev)
     }
     public void posLoserTeam(Team loser){

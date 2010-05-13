@@ -40,18 +40,18 @@ class Player implements EntityBase{
         password(blank:false, validator: {//@@NOTE:validator can not rename
                 val, obj ->
                 //issue#16 @TODO: complete the confirm password validation, why 'Cannot invoke method encodePassword() on null object'?
-                //                 println("@@password:"+obj?.properties['password'])
-                //                 println("@@pass:"+obj?.properties['pass'])
-                //                 println("@@authenticateService"+authenticateService)
+                //                 log.info("@@password:"+obj?.properties['password'])
+                //                 log.info("@@pass:"+obj?.properties['pass'])
+                //                 log.info("@@authenticateService"+authenticateService)
                 //
                 //                if((null!=obj.properties['pass'])&&(val!=authenticateService.encodePassword("abc"))){
-                //                     println("@@start:")
-                //                    //println("@@encoded:"+(obj.properties['pass']!=null)?authenticateService.encodePassword(obj.properties['pass']):"null")
+                //                     log.info("@@start:")
+                //                    //log.info("@@encoded:"+(obj.properties['pass']!=null)?authenticateService.encodePassword(obj.properties['pass']):"null")
                 //                    obj.properties['pass']=null
                 //                    obj.properties['password']=null
                 //                    return ['password.notMatch']
                 //                }
-                //                println("@@passvalidation:")
+                //                log.info("@@passvalidation:")
         
             }
         )

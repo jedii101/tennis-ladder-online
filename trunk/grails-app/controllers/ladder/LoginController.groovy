@@ -44,7 +44,7 @@ class LoginController {
      * Show the login page.
      */
     def auth = {
-        println("authentication")
+        log.info("authentication")
         nocache response
 
         if (isLoggedIn()) {
@@ -68,7 +68,7 @@ class LoginController {
 
             view = 'auth'
             postUrl = "${request.contextPath}${config.filterProcessesUrl}"
-            println("render auth:"+postUrl)
+            log.info("render auth:"+postUrl)
         }
 
         render view: view, model: [postUrl: postUrl]

@@ -69,7 +69,7 @@ class MatchSchedule  implements EntityBase{
     
     public boolean validateScore(){
 	    //validate score /default to decide winnerxx
-	    //println("matchSchedule:${LadderUtils.dumpme(this)}")
+	    //log.info("matchSchedule:${LadderUtils.dumpme(this)}")
 	    defaultReason==null?(defenderScore!=challengerScore&&defaultWinner==null):(defaultWinner!=null)
     }
 

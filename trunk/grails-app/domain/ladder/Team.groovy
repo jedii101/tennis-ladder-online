@@ -24,7 +24,7 @@ class Team  implements Comparable, EntityBase {
     }
 
     public String toName(){
-//    	    println("@@"+player1)
+//    	    log.info("@@"+player1)
 	return player1.getName()+
 	(null==player2?"":"\n&"+player2.getName())
     }
@@ -40,7 +40,7 @@ class Team  implements Comparable, EntityBase {
 
     public void winOver(Team loser){
         LevelPosition winnerPosition=position
-        println("position:"+winnerPosition)
+        log.info("position:"+winnerPosition)
         LevelPosition loserPosition=loser.position
 
         //winner become challenger, loser become defender.
@@ -64,8 +64,8 @@ class Team  implements Comparable, EntityBase {
 	    loser.position=winnerPosition//doing this for unit testing
             winnerPosition.save()
         }
-	println("loserPosition:${loserPosition}")
-	println("winnerPosition:${winnerPosition}")
+	log.info("loserPosition:${loserPosition}")
+	log.info("winnerPosition:${winnerPosition}")
         if(winnerPosition.atLadderTop()||loserPosition.atLadderTop()){
             this.status="DEFENDER"
         }
@@ -88,7 +88,7 @@ class Team  implements Comparable, EntityBase {
     public List listChallengersBelow (){
         
         SortedSet positionsBelow=position.belowPositions()
-	println("positionsBelow:${LadderUtils.dumpme(positionsBelow)}")
+	log.info("positionsBelow:${LadderUtils.dumpme(positionsBelow)}")
         List challengers=new ArrayList()
         positionsBelow.each{
 		if(it.team?.canChallenge()){
@@ -102,7 +102,7 @@ class Team  implements Comparable, EntityBase {
         //list teams one level above. TODO?status='DEFENDER'
         
         SortedSet positionsAbove=position.abovePositions()
-	println("positionsAbove:${LadderUtils.dumpme(positionsAbove)}")
+	log.info("positionsAbove:${LadderUtils.dumpme(positionsAbove)}")
         List defenderList=new ArrayList()
         positionsAbove.each{
 		if(it.team?.available()){
@@ -162,7 +162,7 @@ class Team  implements Comparable, EntityBase {
     }
     
     public boolean available(){
-	    println("available:${LadderUtils.dumpme(this)}")
+	    log.info("available:${LadderUtils.dumpme(this)}")
 	    return (status==~/DEFENDER|BOTH/)&&(!position?.inBottomQueue())
     }
 /*
@@ -176,11 +176,11 @@ class Team  implements Comparable, EntityBase {
     */
 
     public static Team fetchTeamByLadderAndPlayer(Ladder l,Player p){
-	    println("ladder before:${LadderUtils.dumpme(l)}")
+	    log.info("ladder before:${LadderUtils.dumpme(l)}")
 	    def team=Team.findByLadderAndPlayer1(l,p)?:Team.findByLadderAndPlayer2(l,p)
 	    if(team==null){
-		println("ladder:${LadderUtils.dumpme(l)}")
-		println("player:${LadderUtils.dumpme(p)}")
+		log.info("ladder:${LadderUtils.dumpme(l)}")
+		log.info("player:${LadderUtils.dumpme(p)}")
 	    }
 	    return team
     }

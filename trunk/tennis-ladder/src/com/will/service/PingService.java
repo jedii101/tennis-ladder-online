@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class PingService {
     private static final Logger log = Logger.getLogger(MailerService.class.getName());
     public boolean ping(int timeout, String paramUrl) {
+	log.info("start ping:"+paramUrl);
 	try {
 	    // Create a URL for the desired page
 	    URL url = new URL(paramUrl);
@@ -23,7 +24,7 @@ public class PingService {
 	    return true;
 	} catch (MalformedURLException e) {
 	    e.printStackTrace();
-	} catch (IOException e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 	log.info("new ping remote site not available:"+paramUrl);
