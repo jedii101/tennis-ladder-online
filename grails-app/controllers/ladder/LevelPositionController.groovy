@@ -23,7 +23,7 @@ class LevelPositionController {
         def levelPositionInstance = new LevelPosition(params)
         if (levelPositionInstance.save(flush: true)) {
             levelPositionInstance.team.position=levelPositionInstance
-            println("team saved:${levelPositionInstance.team.save(flush:true)}")//maybe because i used name other than the convention?team not auto saved.
+            log.info("team saved:${levelPositionInstance.team.save(flush:true)}")//maybe because i used name other than the convention?team not auto saved.
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'levelPosition.label', default: 'LevelPosition'), levelPositionInstance.id])}"
             redirect(action: "show", id: levelPositionInstance.id)
         }
@@ -69,7 +69,7 @@ class LevelPositionController {
             levelPositionInstance.properties = params
             if (!levelPositionInstance.hasErrors() && levelPositionInstance.save(flush: true)) {
                 levelPositionInstance.team.position=levelPositionInstance
-            println("team saved:${levelPositionInstance.team.save(flush:true)}")//maybe because i used name other than the convention?team not auto saved.
+            log.info("team saved:${levelPositionInstance.team.save(flush:true)}")//maybe because i used name other than the convention?team not auto saved.
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'levelPosition.label', default: 'LevelPosition'), levelPositionInstance.id])}"
                 redirect(action: "show", id: levelPositionInstance.id)
             }

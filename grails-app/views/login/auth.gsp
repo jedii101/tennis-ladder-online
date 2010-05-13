@@ -48,6 +48,7 @@
                                         Note:login ID will be your: firstname_lastname all lower cased:i.e: will_han
                                         <br>
   </div>
+  
   <br>
 	<div id='login'>
 		<div class='inner'>

@@ -9,12 +9,12 @@ class MatchService{
     }
 
     def reportResults(MatchSchedule ms){
-	    println("ms.save()${ms.save(flush:true)}")
-	    println("winner:"+ms.winner)
-	    println("loser:"+ms.loser)
+	    log.info("ms.save()${ms.save(flush:true)}")
+	    log.info("winner:"+ms.winner)
+	    log.info("loser:"+ms.loser)
             ms.winner.winOver(ms.loser)//position save
-            println("ms.winner.save()${ms.winner.save(flush:true)}")
-            println("ms.loser.save()${ms.loser.save(flush:true)}")
+            log.info("ms.winner.save()${ms.winner.save(flush:true)}")
+            log.info("ms.loser.save()${ms.loser.save(flush:true)}")
             
 	    new Message(message:ms.generateResultMessage(),createBy:ms.reportBy,type:"RESULT").save()
     }

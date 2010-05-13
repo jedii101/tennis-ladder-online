@@ -29,7 +29,7 @@ class PlayerController {
             return
         }
         List roleNames = []
-        println("@@"+playerInstance.authorities)
+        log.info("@@"+playerInstance.authorities)
         for (role in playerInstance.authorities) {
             roleNames << role.authority
         }
@@ -48,7 +48,7 @@ class PlayerController {
         def playerInstance = Player.get(params.id)
         if (playerInstance) {
             def me=authenticateService.userDomain()
-            println("delete player:${playerInstance}")
+            log.info("delete player:${playerInstance}")
             //avoid self-delete if the logged-in user is an admin
             if (me.userName == playerInstance.userName) {
                 flash.message = "You can not delete yourself, please login as another admin and try again"
@@ -128,7 +128,7 @@ class PlayerController {
 
         def playerInstance = new Player()
         playerInstance.properties = params
-        println("@@ player save"+params)
+        log.info("@@ player save"+params)
         if(playerInstance.password!=playerInstance.pass){
             flash.message = "Password not match!"
             //@@NOTE: clear password since it can not be re-edited
@@ -148,11 +148,12 @@ class PlayerController {
             def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date())
             message.save()
             flash.message=message.format()
-            println("message saved:"+message.format())
+            log.info("message saved:"+message.format())
             redirect action: show, id: playerInstance.id
         }
         else {
             //@@NOTE: clear password since it can not be re-edited
+            flash.error="User account creating failed, please try again."
             playerInstance.password=""
             render view: 'create', model: [authorityList: Authority.list(), playerInstance: playerInstance]
         }
@@ -168,7 +169,7 @@ class PlayerController {
         }
 	if(!found){
 		//use default role: ROLE_USER
-		println("use default ROLE: ROLE_USER")
+		log.info("use default ROLE: ROLE_USER")
 			Authority.findByAuthority("ROLE_USER").addToPeople(playerInstance)
 	}
     }

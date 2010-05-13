@@ -47,24 +47,24 @@ class Level  implements Comparable, EntityBase {
     public String infoLevelTeam(){
         //for each levelposition, print team name, team status
         def levelTeam=""
-        //println(" here!")
+        //log.info(" here!")
         for (i in levelposition) { levelTeam=levelTeam+ i.team
             //"<b class='"+i.team.status+"'>"+i.team+"</b> ; "
 
-            //println("leaveal team:"+levelTeam)
+            //log.info("leaveal team:"+levelTeam)
         }
         //levelTeam=levelposition.each(concatString(levelTeam,it.team))
         return levelTeam;
     }
     public Level belowLevel(){
         def belowLevel= Level.findByLadderAndLev(this.ladder,(this.lev+1))
-	println("belowLevel:${LadderUtils.dumpme(belowLevel)}")
+	log.info("belowLevel:${LadderUtils.dumpme(belowLevel)}")
 	return belowLevel
     }
     
     public Level aboveLevel(){
         def aboveLevel= Level.findByLadderAndLev(this.ladder,(this.lev-1))
-	println("aboveLevel:${LadderUtils.dumpme(aboveLevel)}")
+	log.info("aboveLevel:${LadderUtils.dumpme(aboveLevel)}")
 	return aboveLevel
         /*
         return withCriteria {
@@ -89,10 +89,10 @@ class Level  implements Comparable, EntityBase {
                 vacantPos.setTeam(it.team)
                 vacantPos=it
             }
-            println("pushLoserToEndOfLevel:it:${it}")
+            log.info("pushLoserToEndOfLevel:it:${it}")
         }
         LevelPosition lastPos=fetchLastPosition()
-        println("lastPos:${lastPos}")
+        log.info("lastPos:${lastPos}")
         lastPos.setTeam(loser)
         levelposition.each{
 		if(!it.save()){
@@ -128,7 +128,7 @@ class Level  implements Comparable, EntityBase {
         levelposition.sort{it}.find{it->
             (null==it.team)
         }
-        println("find:${result}")
+        log.info("find:${result}")
         return result
     }
 }

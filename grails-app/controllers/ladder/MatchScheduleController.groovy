@@ -25,38 +25,38 @@ class MatchScheduleController {
     
 
     def challenging = {
-        println("new challenge report:")
+        log.info("new challenge report:")
         def matchScheduleInstance = preFillSchedule()
-        println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+        log.info("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
         
 	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
-        println("myTeam:${LadderUtils.dumpme(myTeam)}")
+        log.info("myTeam:${LadderUtils.dumpme(myTeam)}")
         if(!myTeam?.canChallenge()){
             flash.message = "you don't have the right to challenge!"
             redirect(action: "list")
         }
         matchScheduleInstance.challenger=myTeam
 	def defendersAbove=myTeam.listDefendersAbove()//defenders drop down
-        println("defendersAbove:${defendersAbove}")
+        log.info("defendersAbove:${defendersAbove}")
         matchScheduleInstance.properties = params
 	
         return [matchScheduleInstance: matchScheduleInstance,defenders:defendersAbove]
     }
 
     def defending = {
-        println("new defending report:")
+        log.info("new defending report:")
         def matchScheduleInstance = preFillSchedule()
-        println("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+        log.info("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
 
 	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
-        println("myTeam:${LadderUtils.dumpme(myTeam)}")
+        log.info("myTeam:${LadderUtils.dumpme(myTeam)}")
         if(!myTeam?.available()){
             flash.message = "you are not supposed to defend!"
             redirect(controller:"level",action: "list")
         }
         matchScheduleInstance.defender=myTeam
 	def challengerBelow=myTeam.listChallengersBelow()//defenders drop down
-        println("challengerBelow:${challengerBelow}")
+        log.info("challengerBelow:${challengerBelow}")
         matchScheduleInstance.properties = params
 
         return [matchScheduleInstance: matchScheduleInstance,challengers:challengerBelow]
@@ -77,7 +77,7 @@ class MatchScheduleController {
             // good request
             saveMode("challenging")
         }.invalidToken {
-             println("invalidToken!!")
+             log.info("invalidToken!!")
             flash.error = "the page staled, please try again."
             redirect(controller:'level',action:'list')
             return
@@ -90,7 +90,7 @@ class MatchScheduleController {
             // good request
             saveMode("defending")
         }.invalidToken {
-             println("invalidToken!!")
+             log.info("invalidToken!!")
             flash.error = "the page staled, please try again."
             redirect(controller:'level',action:'list')
             return
@@ -98,10 +98,10 @@ class MatchScheduleController {
         
     }
     private saveMode(String mode)  {
-        println("save:${LadderUtils.dumpme(params)};mode:${mode}")
+        log.info("save:${LadderUtils.dumpme(params)};mode:${mode}")
         def matchScheduleInstance = new MatchSchedule(params)
         if(!matchScheduleInstance.validateScore()){
-            println("failed score validation!")
+            log.info("failed score validation!")
             flash.error = "System can not decide the winner, make sure score or default were set properly, please try again."
             redirect(controller:'level',action:'list')
             return

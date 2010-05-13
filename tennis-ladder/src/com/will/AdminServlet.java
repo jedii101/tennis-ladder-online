@@ -58,7 +58,7 @@ public class AdminServlet extends HttpServlet {
 		log.warning("ip:"+request.getRemoteAddr());
 		log.warning("user:"+user);
 		log.warning("passwd:"+passwd);
-		return;//do nothing
+		throw new RuntimeException("authentication failed");
 	    }
 	    updateProperties(request, user);
 	    mailService.sendMail(new MailTemplate());

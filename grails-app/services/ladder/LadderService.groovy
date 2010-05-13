@@ -38,7 +38,7 @@ class LadderService {
             }
             def abovePositions=LevelPosition.findAllByLevel(levelAbove)
 	    abovePositions.each{
-		    println("abovePositions:${it.info()}")
+		    log.info("abovePositions:${it.info()}")
 	    }
 	    //list defenders & both above
             //List teamsAvailableBeChallenged=new ArrayList()
@@ -62,7 +62,7 @@ class LadderService {
             }
             def belowPositions=LevelPosition.findAllByLevel(levelBelow)
 	    belowPositions.each{
-		    println("belowPositions:${it.info()}")
+		    log.info("belowPositions:${it.info()}")
 	    }
 	    //list defenders & both above
             //List teamsAvailableBeChallenged=new ArrayList()

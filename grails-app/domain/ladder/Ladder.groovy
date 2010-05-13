@@ -24,7 +24,7 @@ class Ladder implements EntityBase{
 	team.position=lp
 	team.save()
 	lp.save()
-	println("added team:${lp.info()}")
+	log.info("added team:${lp.info()}")
     }
     
     public LevelPosition firstAvailable(){
@@ -32,7 +32,7 @@ class Ladder implements EntityBase{
         def mylevels= Level.list([sort: 'level', order: 'asc',
         fetch: [levelposition: 'eager']])
         
-        println("mylevels:${mylevels}")
+        log.info("mylevels:${mylevels}")
       */  
       def firstAvailableLevel=
         levels.sort().find{

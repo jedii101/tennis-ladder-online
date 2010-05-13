@@ -28,7 +28,7 @@ class LadderUtils {
     	    	return "referenced"	    
     	    }
     	    if(dumpStarted.size()==dumpEnded.size()){
-    	    	    println("loop finished")
+    	    	    log.info("loop finished")
     	    	    dumpStarted.clear()
     	    	    dumpEnded.clear()
     	    	    me.replaceAll("<","\\\\n<")
