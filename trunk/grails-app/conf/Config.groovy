@@ -59,13 +59,18 @@ environments {
 }
 
 // log4j configuration
-log4j = {
+log4j = { root ->
+    root.level=org.apache.log4j.Level.INFO
+
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+       rollingFile name:"myAppender", maxFileSize:1024, file:"ladder.log",pattern:"%r [%t] %-5p %c(%M%L) %x - %m%n"
+
+
+        //console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP

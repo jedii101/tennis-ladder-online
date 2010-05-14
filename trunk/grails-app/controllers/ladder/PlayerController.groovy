@@ -145,11 +145,12 @@ class PlayerController {
         if (playerInstance.save()) {
             addRoles(playerInstance)
             //save message
-            def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date())
-            message.save()
+            def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date(),type:"SYSTEM")
+            if(message.save()){
             flash.message=message.format()
             log.info("message saved:"+message.format())
-            redirect action: show, id: playerInstance.id
+            }
+            redirect( controller:"message" ,action: "list")
         }
         else {
             //@@NOTE: clear password since it can not be re-edited
