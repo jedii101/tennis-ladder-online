@@ -37,7 +37,9 @@ class Player implements EntityBase{
         enabled()
         emailShow()
         description blank:true
-        password(blank:false, validator: {//@@NOTE:validator can not rename
+        password(blank:false)
+        /**
+        , validator: {//@@NOTE:validator can not rename
                 val, obj ->
                 //issue#16 @TODO: complete the confirm password validation, why 'Cannot invoke method encodePassword() on null object'?
                 //                 log.info("@@password:"+obj?.properties['password'])
@@ -55,6 +57,7 @@ class Player implements EntityBase{
         
             }
         )
+        **/
     }
     public String getName(){//@@Note:String.metaClass.mixin StringUtils
         return LadderUtils.formatName(firstName)+"."+LadderUtils.formatName(lastName)

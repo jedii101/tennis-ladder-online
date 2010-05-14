@@ -1,5 +1,10 @@
 package ladder
+
+import  org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 class Team  implements Comparable, EntityBase {
+	private static final Log log = LogFactory.getLog(ladder.Team) 
     Player player1
     Player player2
     
