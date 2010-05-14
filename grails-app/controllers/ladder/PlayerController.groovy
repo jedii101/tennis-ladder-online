@@ -147,10 +147,14 @@ class PlayerController {
             //save message
             def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date(),type:"SYSTEM")
             if(message.save()){
-            flash.message=message.format()
-            log.info("message saved:"+message.format())
+                flash.message=message.format()
+                log.info("message saved:"+message.format())
             }
-            redirect( controller:"message" ,action: "list")
+            def me=authenticateService.userDomain()
+            if(me?.hasAdminRole()){
+                redirect action: show, id: playerInstance.id
+            }else{
+                redirect( controller:"login" ,action: "auth")}
         }
         else {
             //@@NOTE: clear password since it can not be re-edited
@@ -161,7 +165,7 @@ class PlayerController {
     }
 
     private void addRoles(playerInstance) {
-	    boolean found=false
+        boolean found=false
         for (String key in params.keySet()) {
             if (key.contains('ROLE') && 'on' == params.get(key)) {
                 Authority.findByAuthority(key).addToPeople(playerInstance)
@@ -169,9 +173,9 @@ class PlayerController {
             }
         }
 	if(!found){
-		//use default role: ROLE_USER
-		log.info("use default ROLE: ROLE_USER")
-			Authority.findByAuthority("ROLE_USER").addToPeople(playerInstance)
+            //use default role: ROLE_USER
+            log.info("use default ROLE: ROLE_USER")
+            Authority.findByAuthority("ROLE_USER").addToPeople(playerInstance)
 	}
     }
 

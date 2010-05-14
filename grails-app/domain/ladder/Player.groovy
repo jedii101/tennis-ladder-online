@@ -27,17 +27,17 @@ class Player implements EntityBase{
     //	static hasMany = [levels:Level]
     static constraints = {
         //NOTE: validation: http://grails.org/doc/latest/ 7.4
-        firstName blank:false
-        lastName blank:false
+        firstName( blank:false)
+        lastName (blank:false)
         userName(blank:false,unique:true)
                 
-        email blank:true, email:true
+        email (blank:true, email:true)
         phone matches:/\d{10}/
                 
-        enabled()
-        emailShow()
+        //enabled()
+        //emailShow()
         description blank:true
-        password(blank:false)
+        password(blank:false,minSize:3)
         /**
         , validator: {//@@NOTE:validator can not rename
                 val, obj ->
@@ -70,5 +70,9 @@ class Player implements EntityBase{
 
     public  String getUserName(){
         return (null==firstName&&null==lastName)?"":firstName.toLowerCase()+"_"+lastName?.toLowerCase()
+    }
+
+    public boolean hasAdminRole(){
+        return authorities.contains(Authorities.findByName("ROLE_ADMIN"))
     }
 }
