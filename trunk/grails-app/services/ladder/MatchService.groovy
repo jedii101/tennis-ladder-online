@@ -16,7 +16,7 @@ class MatchService{
             log.info("ms.winner.save()${ms.winner.save(flush:true)}")
             log.info("ms.loser.save()${ms.loser.save(flush:true)}")
             
-	    new Message(message:ms.generateResultMessage(),createBy:ms.reportBy,type:"RESULT").save()
+	    new Message(message:ms.generateResultMessage(),createBy:ms.reportBy,type:"RESULT").save(flush:true)
     }
 
     def listMatchResults={
