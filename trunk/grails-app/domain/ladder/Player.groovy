@@ -73,6 +73,6 @@ class Player implements EntityBase{
     }
 
     public boolean hasAdminRole(){
-        return authorities.contains(Authorities.findByName("ROLE_ADMIN"))
+        return authorities.contains(Authority.findByAuthority("ROLE_ADMIN"))
     }
 }
