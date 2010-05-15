@@ -128,7 +128,7 @@ class PlayerController {
 
         def playerInstance = new Player()
         playerInstance.properties = params
-        log.info("@@ player save"+params)
+        log.info("player save:"+params)
         if(playerInstance.password!=playerInstance.pass){
             flash.message = "Password not match!"
             //@@NOTE: clear password since it can not be re-edited
@@ -142,11 +142,11 @@ class PlayerController {
 
 
         playerInstance.password = authenticateService.encodePassword(params.password)
-        if (playerInstance.save()) {
+        if (playerInstance.save(flush:true)) {
             addRoles(playerInstance)
             //save message
             def message=new Message(createBy:playerInstance,message:"Account Created: ${playerInstance.userName}",created:new Date(),type:"SYSTEM")
-            if(message.save()){
+            if(message.save(flush:true)){
                 flash.message=message.format()
                 log.info("message saved:"+message.format())
             }

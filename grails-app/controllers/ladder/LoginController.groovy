@@ -36,6 +36,7 @@ class LoginController {
             redirect uri: '/'
         }
         else {
+            
             redirect action: auth, params: params
         }
     }
@@ -44,7 +45,7 @@ class LoginController {
      * Show the login page.
      */
     def auth = {
-        log.info("authentication")
+        log.info("login:${params}")
         nocache response
 
         if (isLoggedIn()) {

@@ -25,9 +25,9 @@ class MatchScheduleController {
     
 
     def challenging = {
-        log.info("new challenge report:")
+        
         def matchScheduleInstance = preFillSchedule()
-        log.info("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+        log.info("challenge report init:${LadderUtils.dumpme(matchScheduleInstance)}")
         
 	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
         log.info("myTeam:${LadderUtils.dumpme(myTeam)}")
@@ -44,9 +44,9 @@ class MatchScheduleController {
     }
 
     def defending = {
-        log.info("new defending report:")
+        
         def matchScheduleInstance = preFillSchedule()
-        log.info("matchScheduleInstance:${LadderUtils.dumpme(matchScheduleInstance)}")
+        log.info("defending report init:${LadderUtils.dumpme(matchScheduleInstance)}")
 
 	Team myTeam=Team.fetchTeamByLadderAndPlayer(matchScheduleInstance.ladder,matchScheduleInstance.reportBy)
         log.info("myTeam:${LadderUtils.dumpme(myTeam)}")
@@ -98,7 +98,7 @@ class MatchScheduleController {
         
     }
     private saveMode(String mode)  {
-        log.info("save:${LadderUtils.dumpme(params)};mode:${mode}")
+        log.info("save match report:${LadderUtils.dumpme(params)};mode:${mode}")
         def matchScheduleInstance = new MatchSchedule(params)
         if(!matchScheduleInstance.validateScore()){
             log.info("failed score validation!")

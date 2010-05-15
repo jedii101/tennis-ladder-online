@@ -128,7 +128,7 @@ class Level  implements Comparable, EntityBase {
         levelposition.sort{it}.find{it->
             (null==it.team)
         }
-        log.info("find:${result}")
+        log.info("firstAvailablePosition:${result}")
         return result
     }
 }
