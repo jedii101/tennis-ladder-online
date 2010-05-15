@@ -158,6 +158,7 @@ class PlayerController {
         }
         else {
             //@@NOTE: clear password since it can not be re-edited
+            log.error(playerInstance.errors)
             flash.error="User account creating failed, please try again."
             playerInstance.password=""
             render view: 'create', model: [authorityList: Authority.list(), playerInstance: playerInstance]
