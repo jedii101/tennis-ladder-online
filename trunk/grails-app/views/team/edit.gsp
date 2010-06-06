@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
             <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
@@ -36,6 +36,15 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'status', 'errors')}">
                                     <g:select name="status" from="${teamInstance.constraints.status.inList}" value="${teamInstance?.status}" valueMessagePrefix="team.status"  />
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="subStatus"><g:message code="team.subStatus.label" default="Sub Status" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: teamInstance, field: 'subStatus', 'errors')}">
+                                    <g:select name="subStatus" from="${teamInstance.constraints.subStatus.inList}" value="${teamInstance?.subStatus}" valueMessagePrefix="team.subStatus"  />
                                 </td>
                             </tr>
                         

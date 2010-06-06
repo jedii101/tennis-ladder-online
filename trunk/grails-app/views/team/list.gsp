@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body">
@@ -25,6 +25,8 @@
                             <g:sortableColumn property="id" title="${message(code: 'team.id.label', default: 'Id')}" />
                         
                             <g:sortableColumn property="status" title="${message(code: 'team.status.label', default: 'Status')}" />
+                        
+                            <g:sortableColumn property="subStatus" title="${message(code: 'team.subStatus.label', default: 'Sub Status')}" />
                         
                             <th><g:message code="team.position.label" default="Position" /></th>
                    	    
@@ -43,6 +45,8 @@
                             <td><g:link action="show" id="${teamInstance.id}">${fieldValue(bean: teamInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: teamInstance, field: "status")}</td>
+                        
+                            <td>${fieldValue(bean: teamInstance, field: "subStatus")}</td>
                         
                             <td>${fieldValue(bean: teamInstance, field: "position")}</td>
                         

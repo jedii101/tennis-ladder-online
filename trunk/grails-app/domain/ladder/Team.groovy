@@ -9,13 +9,15 @@ class Team  implements Comparable, EntityBase {
     Player player2
     
     String status
+    String subStatus
     Date lastMatchDate//default doesn't need to care this
     
     static transients = [ 'defenders','shortStatus' ]
     Ladder ladder
     static belongsTo=[position:LevelPosition]
     static constraints = {
-        status(inList:["DEFENDER", "CHALLENGER","BOTH","ON-CHALLENGE","DISABLED","VACATION"] )
+        status(inList:["DEFENDER", "CHALLENGER","BOTH"] )
+        subStatus(inList:["","ON-CHALLENGE", "VACATION","INJURED"] )
 //        lastMatchSchedule(nullable:true)
         position(nullable:true)
 	ladder(nullable:true)
@@ -26,6 +28,10 @@ class Team  implements Comparable, EntityBase {
     
     public String getStatus(){
     	return status?:"BOTH"	    
+    }
+
+    public String getSubStatus(){
+    	return subStatus?:""
     }
 
     public String toName(){
@@ -50,7 +56,9 @@ class Team  implements Comparable, EntityBase {
 
         //winner become challenger, loser become defender.
         this.status="CHALLENGER"//unless it's at top of ladder
+        this.subStatus=""
         loser.status="DEFENDER"
+        loser.subStatus=""
 	this.lastMatchDate=new Date()
 	loser.lastMatchDate=new Date()
 
@@ -130,21 +138,15 @@ class Team  implements Comparable, EntityBase {
 
     public String getShortStatus(){
         if("DEFENDER".equals(status)){
-            return "(-)"
+            return "(-)${getSubStatus()}"
         }
         if("BOTH".equals(status)){
-            return "(?)"
-        }
-	if("VACATION".equals(status)){
-            return "(*)"
-        }
-	if("ON-CHALLENGE".equals(status)){
-            return "(!)"
+            return "(?)${getSubStatus()}"
         }
 	 if("DISABLED".equals(status)){
             return "(\\)"
         }
-        return "(+)"
+        return "(+)${getSubStatus()}"
     }
     /**
     public boolean availableForChallenge(){
