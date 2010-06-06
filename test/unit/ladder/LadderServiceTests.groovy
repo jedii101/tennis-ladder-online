@@ -7,8 +7,15 @@ class LadderServiceTests extends GrailsUnitTestCase {
     def mixLadder
     protected void setUp() {
         super.setUp()
+                mockLogging(Ladder)
+        mockLogging(Level)
+        mockLogging(LevelPosition)
+        mockLogging(Team)
+        mockLogging(Player)
+        mockLogging(LadderService)
         def testLadder = []
         mockDomain(Ladder, testLadder)
+        
         def testLevel = []
         mockDomain(Level, testLevel)
         def testLevelPosition = []
@@ -37,7 +44,7 @@ class LadderServiceTests extends GrailsUnitTestCase {
             new CascadeDomainSaver().saveCascade(tg(i,"BOTH",mixLadder))
             //tg(i,null,null).save()
         }
-        
+
     }
 
     protected void tearDown() {
@@ -182,13 +189,18 @@ class LadderServiceTests extends GrailsUnitTestCase {
     }
     
     void testFillTeams(){
-	    shouldFailWithCause(LadderSystemException) {
+	    try {
 		    ls.fillTeams(mixLadder)
-
-	    Team.findAllByLadder(mixLadder).each{
-		    println("team after filled:${it} at:${it.position}")
-	    assertNotNull(it.position)
+		    fail("exception expected")
+	    }catch(LadderSystemException e){
+	    	    
 	    }
+	    mixLadder.levels.each{
+		   // println("team after filled:${it} at:${it.position}")
+		   it.levelposition.each{lp->
+		   	   assertNotNull(lp.team)
+		   }
+
 	    	    }
     }
     
@@ -260,5 +272,9 @@ class LadderServiceTests extends GrailsUnitTestCase {
 		
 	t.status="CHALLENGER"
 	assertTrue(t.canChallenge())
+    }
+    
+    void testRreshStatus(){
+    	    ls.refreshStatus()
     }
 }

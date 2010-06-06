@@ -170,6 +170,11 @@ class Team  implements Comparable, EntityBase {
 	    log.info("available:${LadderUtils.dumpme(this)}")
 	    return (status==~/DEFENDER|BOTH/)&&(!position?.inBottomQueue())
     }
+    
+        
+    public boolean expired(){
+    	    return ("DEFENDER".equals(status)||"CHALLENGER".equals(status))&&(lastMatchDate==null?true:lastMatchDate<(new Date()-2))
+    }
 /*
     public LevelPosition getPosition(){
         return position?:LevelPosition.findByTeam(this)
@@ -189,6 +194,7 @@ class Team  implements Comparable, EntityBase {
 	    }
 	    return team
     }
+
 
 //    public MatchSchedule getLastMatchSchedule(){
 //        return MatchSchedule.withCriteria {

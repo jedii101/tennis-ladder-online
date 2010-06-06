@@ -4,11 +4,18 @@ import grails.test.*
 
 class MatchScheduleTests extends GrailsUnitTestCase {
     def ls
-    def matchService=new MatchService()
+    def matchService
     def mixLadder
     protected void setUp() {
         super.setUp()
-
+	        mockLogging(Ladder)
+        mockLogging(Level)
+        mockLogging(LevelPosition)
+        mockLogging(Team)
+        mockLogging(Player)
+        mockLogging(LadderService)
+        mockLogging(MatchService)
+        matchService=new MatchService()
         def testLadder = []
         mockDomain(Ladder, testLadder)
         def testLevel = []
@@ -56,6 +63,7 @@ class MatchScheduleTests extends GrailsUnitTestCase {
 	
 	def firstAvailableLP=mixLadder.firstAvailable()
 	println("firstAvaialbleLP:${firstAvailableLP}")
+
     }
 
     protected void tearDown() {
