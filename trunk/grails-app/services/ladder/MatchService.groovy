@@ -13,6 +13,8 @@ class MatchService{
 	    log.info("winner:"+ms.winner)
 	    log.info("loser:"+ms.loser)
             ms.winner.winOver(ms.loser)//position save
+            ms.winner.lastMatchDate=ms.matchDate
+            ms.loser.lastMatchDate=ms.matchDate
             log.info("ms.winner.save()${ms.winner.save(flush:true)}")
             log.info("ms.loser.save()${ms.loser.save(flush:true)}")
             

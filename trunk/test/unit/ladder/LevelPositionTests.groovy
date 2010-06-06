@@ -6,6 +6,12 @@ class LevelPositionTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
         mockForConstraintsTests(LevelPosition)
+        mockLogging(Ladder)
+        mockLogging(Level)
+        mockLogging(LevelPosition)
+        mockLogging(Team)
+        mockLogging(Player)
+        mockLogging(LadderService)
     }
 
     protected void tearDown() {

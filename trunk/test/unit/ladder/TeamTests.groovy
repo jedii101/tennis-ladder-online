@@ -1,16 +1,21 @@
 package ladder
 
 import grails.test.*
-import BootStrap
+//import BootStrap
 
 class TeamTests extends GrailsUnitTestCase {
     Team team
     def ls
-    def matchService=new MatchService()
+    def matchService
     def mixLadder
     protected void setUp() {
         super.setUp()
-
+	        mockLogging(Ladder)
+        mockLogging(Level)
+        mockLogging(LevelPosition)
+        mockLogging(Team)
+        mockLogging(Player)
+        mockLogging(LadderService)
         def testLadder = []
         mockDomain(Ladder, testLadder)
         def testLevel = []
@@ -54,6 +59,7 @@ class TeamTests extends GrailsUnitTestCase {
         mockDomain(DefaultReason, testDR)
 	
 	team=Team.findByPlayer1(Player.findByUserName("1first1_1last1"))
+
     }
     protected void fillTeam(){
         def teams=Team.findAll()
@@ -105,8 +111,18 @@ class TeamTests extends GrailsUnitTestCase {
         assertEquals("First.Last\n&Will.Han",new Team(player1:new Player(firstName:"first",lastName:"last")
 	,player2:new Player(firstName:"will",lastName:"han")).toName())
     }
-    void testFlip(){
-    
+    void testExpired(){
+    Team d1=new Team(status:"DEFENDER",lastMatchDate:(new Date()-3))
+    println(d1.expired())
+    assertEquals(true,d1.expired())
+    d1=new Team(status:"DEFENDER",lastMatchDate:(new Date()-2))
+    assertEquals(false,d1.expired())
+    d1=new Team(status:"BOTH",lastMatchDate:(new Date()-2))
+    assertEquals(false,d1.expired())
+    d1=new Team(status:"BOTH",lastMatchDate:(new Date()-4))
+    assertEquals(false,d1.expired())
+    d1=new Team(status:"CHALLENGER",lastMatchDate:(new Date()-3))
+    assertEquals(true,d1.expired())
     }
 
 

@@ -63,7 +63,7 @@ class MatchSchedule  implements EntityBase{
 	    return defaultReason==null?(defenderScore>challengerScore?" ${defenderScore}:${challengerScore}":" ${challengerScore}:${defenderScore}"):"By default, code:${defaultReason}"
     }
     public String generateResultMessage(){
-        String result= "Match Result:${getWinner()} defeated ${getLoser()} ${generateScore()}".replaceAll("\n","")
+        String result= "Match Result:on ${matchDate} ${getWinner()} defeated ${getLoser()} ${generateScore()}".replaceAll("\n","")
 
     }
     

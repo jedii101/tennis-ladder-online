@@ -6,15 +6,15 @@ class CascadeDomainSaver{
     List savedRegistry=new Vector();//a registry remember what I saved
     boolean saveCascade(Object e){
 	if(e instanceof EntityBase && (!savedRegistry.contains(e))){
-		log.info("saved:${e}")
+		println("saved:${e}")
             e.save()
             savedRegistry.add(e)
             e.properties.each { prop, val ->
 		if(val==null||prop==null||prop==~/metaClass|class/) return
   
-		//log.info("saveCascade:${val},class:${val.class}")
+		//println("saveCascade:${val},class:${val.class}")
 		if(val instanceof Collection){
-                   // log.info("collection found")
+                   // println("collection found")
                     val.each{val1->
                         saveCascade(val1)//recursively save object
                     }
