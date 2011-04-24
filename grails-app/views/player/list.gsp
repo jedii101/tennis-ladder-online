@@ -56,7 +56,7 @@
           <td>${fieldValue(bean:playerInstance, field:'email')}</td>
 
           <td>${fieldValue(bean:playerInstance, field:'phone')}</td>
-
+			<td>${fieldValue(bean:playerInstance, field:'enabled')}</td>
           </tr>
         </g:each>
         </tbody>

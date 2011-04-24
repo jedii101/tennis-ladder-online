@@ -39,9 +39,9 @@
         <th><g:message code="message.schedule.label" default="Schedule" /></th>
       </g:ifAnyGranted>
       <th><g:message code="message.createBy.name" default="From" /></th>
-      <g:message code="message.message" default="Message" />
+      <th><g:message code="message.message" default="Message" /></th>
 
-      <g:message code="message.createBy.name" default="Created" />
+      <th><g:message code="message.createBy.name" default="Created" /></th>
 
       </tr>
       </thead>
