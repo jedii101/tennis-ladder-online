@@ -3,6 +3,8 @@ DEMO:http://tennis-ladder.appspot.com
 
 *I am open to contract position on Groovy/Grails/Java consulting*
 
+mailto:will.han@gmail.com
+
 = Introduction =
 
 The biggest advantage for moving it online is TO LET USER *report result online* instead of sending emails, once user reported result, everyone will be able to see the standing change right away as well as the result report, so no need to wait for 'weekly' result anymore, in another words, the ladder will be 'realtime' once it's been moved online.
